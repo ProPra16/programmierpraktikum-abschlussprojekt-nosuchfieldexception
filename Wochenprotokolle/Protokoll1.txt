@@ -1,0 +1,16 @@
+Was wurde in dieser Woche versucht?
+- Team finden 
+- Mit Git klar kommen
+- Grundgerüst aufstellen 
+- Gradle & Travis zum laufen bringen
+
+Wie gut hat das funtkioniert?
+- Mehr oder minder souverän hat sich das Team in der GitHub Gruppe eingefunden (Leider fehlen noch 2 zu diesem Zeitpunkt)
+- Git Verständnis wird sich über die Wochen erst zeigen
+- Grundgerüst steht ganz gut
+- Gradle und Travis tun das wofür sie da sind
+
+Was steht für die nächste Woche an?
+- Mit Git und GitHub besser klar kommen
+- Verstehen wie man mit Gradle Projekte ausführt
+- Anfangen zu Programmieren (genauere Aufteilung bis jetzt noch nicht vorhanden)
