@@ -4,6 +4,6 @@ jdk: oraclejdk8
 before_install:
  - chmod +x gradlew
  
- notifications:
+notifications:
   email: false
 
