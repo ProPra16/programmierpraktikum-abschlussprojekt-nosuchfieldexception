@@ -1,7 +1,7 @@
 Team NoSuchFieldException
 - Fabio Schlösservila
 - Jan Orlob (= CaptainFlaM0ng0)
-- Julian Winter
+- Julian Winter (= Lullatsch)
 - Arman Samary ( = I4RM4NI)
 - Tobias Vogt (= Lagiacrus24)
 
