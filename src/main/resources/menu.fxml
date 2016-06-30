@@ -14,6 +14,9 @@
       <Button layoutX="200.0" layoutY="25.0" mnemonicParsing="false" text="Nächster schritt" />
       <Button layoutX="315.0" layoutY="25.0" mnemonicParsing="false" text="Voheriger Schritt" />
       
+      <CheckBox layoutX="450.0" layoutY="29.0" mnemonicParsing="false" text="Tracking" /> <!-- >Felder für Zeitmessungen -->
+      <TextField layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
+      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
       
    </children>
 </AnchorPane>
