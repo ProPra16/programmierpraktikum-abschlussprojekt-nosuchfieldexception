@@ -4,34 +4,48 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class StandardTimer implements BabystepsTimer {
-	Timer testingTimer;
-	long testingStarted;
-	long codingStarted;
+public class CustomTimer implements BabystepsTimer {
+	private Timer testingTimer, codingTimer;
+	private long testingStarted, codingStarted;
+	private final long testingTime, codingTime;
 	private ArrayList<BabystepsUser> userList;
+	
+	public CustomTimer(long testingTime, long codingTime) {
+		userList = new ArrayList<BabystepsUser>();
+		testingTimer = new Timer();
+		codingTimer = new Timer();
+		this.testingTime = testingTime;
+		this.codingTime = codingTime;
+	}
+	
+	public CustomTimer(BabystepsUser user, long testingTime, long codingTime) {
+		this(testingTime, codingTime);
+		registerBabystepsUser(user);
+	}
 	
 	@Override
 	public long getCodingDuration() {
-		return 3*60*1000;
+		return codingTime;
 	}
 
 	@Override
 	public long getTestingDuration() {
-		return 3*60*1000;
+		return testingTime;
 	}
 
 	@Override
 	public long getRemaingTestingTime() {
-		return 0;
+		return testingTime-(System.currentTimeMillis()-testingStarted);
 	}
 
 	@Override
 	public long getRemainingCodingTime() {
-		return 0;
+		return codingTime-(System.currentTimeMillis()-codingStarted);
 	}
 
 	@Override
 	public void startTestingTimer() {
+		testingStarted = System.currentTimeMillis();
 		testingTimer.schedule(new TimerTask() {
 			
 			@Override
@@ -48,24 +62,21 @@ public class StandardTimer implements BabystepsTimer {
 	}
 
 	@Override
-	public void pauseTestingTimer() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void startCodingTimer() {
+		codingStarted = System.currentTimeMillis();
+		codingTimer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				notifyAllUsersCodingTimeElapsed();
+				stopCodingTimer();
+			}
+		}, getCodingDuration());
 	}
 
 	@Override
 	public void stopCodingTimer() {
-		
-	}
-
-	@Override
-	public void pauseCodingTimer() {
-		// TODO Auto-generated method stub
-
+		codingTimer.cancel();
 	}
 
 	@Override
