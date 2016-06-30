@@ -5,12 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <Label text="Hauptmenü" BorderPane.alignment="CENTER" />
-   </top>
-   <center>
-      <Label text="Hier könnte ihr Werbung stehen!" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>									<!-- >die Buttons für die Grundfunktionen: Laden und Speichern sowie zwischen den TDD Schritten wechseln -->
+   	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
+   
+   	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" text="Laden" />
+      <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" text="Speichern" />
+      <Button layoutX="200.0" layoutY="25.0" mnemonicParsing="false" text="Nächster schritt" />
+      <Button layoutX="315.0" layoutY="25.0" mnemonicParsing="false" text="Voheriger Schritt" />
+      
+      <CheckBox layoutX="450.0" layoutY="29.0" mnemonicParsing="false" text="Tracking" /> <!-- >Felder für Zeitmessungen -->
+      <TextField layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
+      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
+      
+   </children>
+</AnchorPane>
