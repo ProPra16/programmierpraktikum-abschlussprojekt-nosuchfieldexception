@@ -1,5 +1,6 @@
 package tddt;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import vk.core.api.CompilationUnit;
@@ -67,6 +68,28 @@ public class KataLiveCompiler {
 		}else{
 			return "No compile-error detected, good job! :D";
 		}
+	}
+	
+	/**
+	 * Searches for the lines in the code, where the error ocurred
+	 * @return An ArrayList containing als errored lines of code
+	 */
+	public ArrayList<String> getErroredLines(){
+		CompilerResult result = compiler.getCompilerResult();
+		ArrayList<String> errorLines = new ArrayList<>();
+		if(result.hasCompileErrors()){
+			//Fetch codeClass compile-error-lines
+			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
+			for(CompileError error : codeClassErrors){
+				errorLines.add(error.getCodeLineContainingTheError());
+			}
+			//Fetch testClass compile-errors-lines
+			Collection<CompileError> testClassErrors = result.getCompilerErrorsForCompilationUnit(testClass);
+			for(CompileError error : testClassErrors){
+				errorLines.add(error.getCodeLineContainingTheError());
+			}
+		}
+		return errorLines;
 	}
 
 }
