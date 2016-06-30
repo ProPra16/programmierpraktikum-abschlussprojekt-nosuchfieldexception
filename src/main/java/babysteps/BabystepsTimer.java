@@ -42,10 +42,10 @@ public interface BabystepsTimer {
 	 */
 	public void stopTestingTimer();
 	
-	/**
-	 * Pauses the testing timer
-	 */
-	public void pauseTestingTimer();
+//	/**
+//	 * Pauses the testing timer
+//	 */
+//	public void pauseTestingTimer();
 	
 	/**
 	 * Starts the coding cycle timer
@@ -57,13 +57,13 @@ public interface BabystepsTimer {
 	 */
 	public void stopCodingTimer();
 	
-	/**
-	 * Pauses the coding timer
-	 */
-	public void pauseCodingTimer();
+//	/**
+//	 * Pauses the coding timer
+//	 */
+//	public void pauseCodingTimer();
 	
-	public void notifyAllUsersTestingTimeElapsed();
+	void notifyAllUsersTestingTimeElapsed();
 	
-	public void notifyAllUsersCodingTimeElapsed();
+	void notifyAllUsersCodingTimeElapsed();
 
 }
