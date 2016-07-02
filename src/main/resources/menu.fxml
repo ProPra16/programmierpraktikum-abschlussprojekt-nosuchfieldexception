@@ -11,14 +11,14 @@
    
    	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" text="Laden" />
       <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" text="Speichern" />
-      <Button layoutX="200.0" layoutY="25.0" mnemonicParsing="false" text="Nächster schritt" />
-      <Button layoutX="315.0" layoutY="25.0" mnemonicParsing="false" text="Voheriger Schritt" />
+      <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" text="Next Step" />
+     
       
       <CheckBox layoutX="475.0" layoutY="29.0" mnemonicParsing="false" text="Babysteps" /> <!-- >Felder für Zeitmessungen -->
       <TextField layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
       <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
       
-      <Label layoutX="25.0" layoutY="76.0" text="Test" />		<!-- >Die Textfelder der für den TDD Ablauf -->
+      <Label layoutX="25.0" layoutY="76.0" text="Test" />		
       <TextArea layoutX="25.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />	
       <Label layoutX="285.0" layoutY="76.0" text="Code" />
       <TextArea layoutX="285.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
