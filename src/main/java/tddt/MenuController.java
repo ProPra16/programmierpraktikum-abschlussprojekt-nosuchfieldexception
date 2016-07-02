@@ -50,7 +50,7 @@ public class MenuController {
 			
 			//Condition to get to the next Phase:
 			//Have compiling code and satisfied tests!
-			if(compiler.codeCompilesAndDoesNotFulfillTests()){
+			if(compiler.codeCompilesAndFulfillsTests()){
 				phase = Color.BLACK;
 			}
 		//Refactor-Phase
