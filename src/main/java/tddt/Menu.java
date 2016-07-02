@@ -14,7 +14,7 @@ public class Menu extends Application {
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
 		
 		//Szenengröße bestimmen
-		Scene scene = new Scene(root,800 ,500);
+		Scene scene = new Scene(root,800 ,800);
 		//CSS laden
 		scene.getStylesheets().add(getClass().getClassLoader().getResource("menu.css").toExternalForm());
 
