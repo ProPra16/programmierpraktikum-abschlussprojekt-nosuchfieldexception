@@ -55,12 +55,12 @@ public class KataLiveCompiler {
 			//Fetch codeClass compile-errors
 			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
 			for(CompileError error : codeClassErrors){
-				errorString += error.getMessage();
+				errorString += "Fehler in der Klasse " + this.getClassName(codeClass.getClassContent()) + ":\n" + "Zeile " + error.getLineNumber() +": "+ error.getMessage() + "\n";
 			}
 			//Fetch testClass compile-errors
 			Collection<CompileError> testClassErrors = result.getCompilerErrorsForCompilationUnit(testClass);
 			for(CompileError error : testClassErrors){
-				errorString += error.getMessage();
+				errorString += "Fehler in der Klasse " + this.getClassName(testClass.getClassContent()) + ":\n" + "Zeile " + error.getLineNumber() +": "+ error.getMessage() + "\n";
 			}
 			return errorString;
 		}else{
