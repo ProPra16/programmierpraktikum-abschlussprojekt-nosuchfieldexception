@@ -28,6 +28,8 @@
       <Label layoutX="25.0" layoutY="355.0" text="Error Anzeige" />
       <TextField layoutX="25.0" layoutY="400.0" prefHeight="25.0" prefWidth="750.0" />	<!-- >Die Error Anzeige -->
       
+      <Label layoutX="25.0" layoutY="440.0" text="Output" />
+      <TextArea layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
       
    </children>
 </AnchorPane>
