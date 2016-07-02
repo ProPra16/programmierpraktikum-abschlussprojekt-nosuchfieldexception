@@ -1,5 +1,6 @@
 package tddt;
 
+import babysteps.BabystepsCycle;
 import babysteps.BabystepsUser;
 import babysteps.CustomTimer;
 import babysteps.TDDCycle;
@@ -41,7 +42,7 @@ public class MenuController {
 
 	@FXML
 	public void handleStartButton() {
-		TDDCycle cycle = null; //Wherever it comes from? Just for progress
+		TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just for progress
 		if(babystepsCheckBox.isSelected()) { //Babysteps!
 			CustomTimer timer = new CustomTimer(new BabystepsUser() {
 				
@@ -56,7 +57,7 @@ public class MenuController {
 					testArea.setText("time elapsed testing");
 					cycle.returnToLastPhase();
 				}
-			}, (long) Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60, (long) Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60); //Missing 2nd field
+			}, (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60), (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60)); //Missing 2nd field
 			
 			if(cycle.getCurrentPhase() == 0) { //For example
 				timer.startTestingTimer();				
