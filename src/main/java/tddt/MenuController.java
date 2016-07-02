@@ -32,7 +32,7 @@ public class MenuController {
 			errorArea.setText("Die Code-Klasse ist noch keine Klasse...");
 		}
 		if(!testArea.getText().contains("class")){
-			errorArea.setText(errorArea.getText() + "\nDie Test-Klasse ist noch keine Klasee...");
+			errorArea.setText(errorArea.getText() + "\nDie Test-Klasse ist noch keine Klasse...");
 		}else{
 			KataLiveCompiler compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
 			errorArea.setText(compiler.getErrors());
