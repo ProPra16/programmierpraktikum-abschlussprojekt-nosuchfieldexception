@@ -16,14 +16,12 @@ public class KataLiveCompiler {
 	
 	/**
 	 * Creates a new Instance of KataLiveCompiler, compiles the code and runs the tests.
-	 * @param codeClassName The name of the class to test
 	 * @param codeClassSourcecode The sourcecode of the class to test
-	 * @param testClassName The name of the class which contains the tests
 	 * @param testClassSourcecode The sourcecode of the class which contains the tests
 	 */
-	public KataLiveCompiler(String codeClassName, String codeClassSourcecode, String testClassName, String testClassSourcecode){
-		codeClass = new CompilationUnit(codeClassName, codeClassSourcecode, false);
-		testClass = new CompilationUnit(testClassName, testClassSourcecode, false);
+	public KataLiveCompiler(String codeClassSourcecode, String testClassSourcecode){
+		codeClass = new CompilationUnit(this.getClassName(codeClassSourcecode), codeClassSourcecode, false);
+		testClass = new CompilationUnit(this.getClassName(testClassSourcecode), testClassSourcecode, false);
 		compiler = CompilerFactory.getCompiler(codeClass, testClass);
 		compiler.compileAndRunTests();
 	}
@@ -90,6 +88,24 @@ public class KataLiveCompiler {
 			}
 		}
 		return errorLines;
+	}
+	
+	
+	/**
+	 * Returns the name of the class, by looking in the sourcecode
+	 * @param classCode The sourcecode of the class to find a name for
+	 * @return The name of the Class.
+	 */
+	public String getClassName(String classCode){
+		String className = "";
+		//Locate Classname
+		int indexBeginName = classCode.indexOf("class") + 5;
+		int indexEndName = classCode.indexOf("{");
+		//Cut String
+		className = classCode.substring(indexBeginName, indexEndName);
+		//Remove whitespace
+		className = className.replace(" ", "");
+		return className;
 	}
 
 }
