@@ -94,12 +94,12 @@ public class KataLiveCompiler {
 			// Fetch codeClass compile-error-lines
 			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
 			for (CompileError error : codeClassErrors) {
-				errorLines.add(error.getCodeLineContainingTheError());
+				errorLines.add(error.getLineNumber() + ": " + error.getCodeLineContainingTheError());
 			}
 			// Fetch testClass compile-errors-lines
 			Collection<CompileError> testClassErrors = result.getCompilerErrorsForCompilationUnit(testClass);
 			for (CompileError error : testClassErrors) {
-				errorLines.add(error.getCodeLineContainingTheError());
+				errorLines.add(error.getLineNumber() + ": " + error.getCodeLineContainingTheError());
 			}
 		}
 		return errorLines;
@@ -113,18 +113,18 @@ public class KataLiveCompiler {
 	 * @return The name of the Class.
 	 */
 	public String getClassName(String classCode) {
-			String className = "";
-			// Locate Classname
-			int indexBeginName = classCode.indexOf("class") + 5;
-			int indexEndName = classCode.indexOf("{");
-			// Cut String if possible
-			try {
-				className = classCode.substring(indexBeginName, indexEndName);
-			} catch (StringIndexOutOfBoundsException e) {
-				className = "InvalidClassError";
-			}
-			// Remove whitespace
-			className = className.replace(" ", "");
-			return className;
+		String className = "";
+		// Locate Classname
+		int indexBeginName = classCode.indexOf("class") + 5;
+		int indexEndName = classCode.indexOf("{");
+		// Cut String if possible
+		try {
+			className = classCode.substring(indexBeginName, indexEndName);
+		} catch (StringIndexOutOfBoundsException e) {
+			className = "InvalidClassError";
+		}
+		// Remove whitespace
+		className = className.replace(" ", "");
+		return className;
 	}
 }
