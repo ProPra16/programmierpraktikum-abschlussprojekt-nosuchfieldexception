@@ -18,5 +18,10 @@
       <TextField layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
       <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
       
+      		<!-- >Die Textfelder der für den TDD Ablauf -->
+      <TextArea layoutX="25.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />	
+      <TextArea layoutX="285.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
+      <TextArea layoutX="545.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
+      
    </children>
 </AnchorPane>
