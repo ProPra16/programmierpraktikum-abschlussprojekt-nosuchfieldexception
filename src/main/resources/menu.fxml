@@ -10,6 +10,13 @@
    	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
    
    	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Laden" />
+	   	  <graphic>
+	        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+	          <image>
+	            <Image url="http://icons.iconarchive.com/icons/mirella-gabriele/fantasy-mediaeval/128/Poison-red-icon.png" />
+	          </image>
+	        </ImageView>
+	      </graphic>
       <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Speichern" />
       <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleNextStepButton" text="Next Step" />
       
