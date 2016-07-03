@@ -96,4 +96,10 @@ public class CustomTimer implements BabystepsTimer {
 			userList.get(i).notifyCodingTimerElapsed();
 		}
 	}
+
+	@Override
+	public void stopAll() {
+		stopCodingTimer();
+		stopTestingTimer();
+	}
 }

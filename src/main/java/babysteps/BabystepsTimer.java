@@ -57,6 +57,8 @@ public interface BabystepsTimer {
 	 */
 	public void stopCodingTimer();
 	
+	public void stopAll();
+	
 //	/**
 //	 * Pauses the coding timer
 //	 */

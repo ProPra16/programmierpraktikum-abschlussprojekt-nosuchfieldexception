@@ -19,6 +19,7 @@ public class MenuController {
 	 * 	Obvious choice, innit?
 	 */
 	private Color phase = Color.RED;
+	private CustomTimer timer;
 
 	@FXML
 	private TextArea codeArea;
@@ -48,27 +49,29 @@ public class MenuController {
 
 	@FXML
 	public void handleStartButton() {
-		TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just for progress
+		//TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just for progress
 		if(babystepsCheckBox.isSelected()) { //Babysteps!
-			CustomTimer timer = new CustomTimer(new BabystepsUser() {
+			timer = new CustomTimer(new BabystepsUser() {
 				
 				@Override
 				public void notifyCodingTimerElapsed() { //Delete and Go back to testing!
 					codeArea.setText("time elapsed coding"); //Mit was anderem ersetzen
-					cycle.returnToLastPhase(); 
+					//cycle.returnToLastPhase();
+					phase = Color.RED;
 				}
 				
 				@Override
 				public void notifiyTestingTimerElapsed() { 
 					testArea.setText("time elapsed testing");
-					cycle.returnToLastPhase();
+					//cycle.returnToLastPhase();
+					phase = Color.BLACK;
 				}
 			}, (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60), (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60)); //Missing 2nd field
 			
-			if(cycle.getCurrentPhase() == 0) { //For example
+			if(phase.equals(Color.RED)) { //For example
 				timer.startTestingTimer();				
 			}
-			else {
+			else if(phase.equals(Color.GREEN)) {
 				timer.startCodingTimer();
 			}
 		} else { //No Babysteps
@@ -78,8 +81,10 @@ public class MenuController {
 
 	@FXML
 	public void handleNextStepButton() {
+		if(babystepsCheckBox.isSelected() && timer != null) timer.stopAll();
 		this.compileCode();
 		//RED-Phase
+		Color tempPhase = phase;
 		if(phase.equals(Color.RED)){
 			
 			
@@ -100,6 +105,16 @@ public class MenuController {
 		//Refactor-Phase
 		}else if(phase.equals(Color.BLACK)){
 			
+		}
+		if(babystepsCheckBox.isSelected() && timer != null) { //Babysteps: now next timer
+			if(!phase.equals(tempPhase)) { //Next step button successful
+				if(phase.equals(Color.RED)){
+					timer.startTestingTimer();
+				}
+				else if(phase.equals(Color.GREEN)){
+					timer.startCodingTimer();
+				}
+			}
 		}
 	}
 
