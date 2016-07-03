@@ -9,27 +9,27 @@
    <children>									<!-- >die Buttons für die Grundfunktionen: Laden und Speichern sowie zwischen den TDD Schritten wechseln -->
    	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
    
-   	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" text="Laden" />
-      <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" text="Speichern" />
-      <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" text="Next Step" />
+   	  <Button onAction="#LOAD" layoutX="35.0" layoutY="25.0" mnemonicParsing="false" text="Laden" />
+      <Button onAction="#SAVE" layoutX="100.0" layoutY="25.0" mnemonicParsing="false" text="Speichern" />
+      <Button onAction="#NEXT" layoutX="300.0" layoutY="25.0" mnemonicParsing="false" text="Next Step" />
      
       
       <CheckBox layoutX="475.0" layoutY="29.0" mnemonicParsing="false" text="Babysteps" /> <!-- >Felder für Zeitmessungen -->
-      <TextField layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
-      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
+      <TextField fx:id="" layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
+      <Button onAction="" layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
       
       <Label layoutX="25.0" layoutY="76.0" text="Test" />		
-      <TextArea layoutX="25.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />	
+      <TextArea fx:id="TEST" layoutX="25.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />	
       <Label layoutX="285.0" layoutY="76.0" text="Code" />
-      <TextArea layoutX="285.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
+      <TextArea fx:id="CODE" layoutX="285.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
       <Label layoutX="545.0" layoutY="76.0" text="Refractor" />
-      <TextArea layoutX="545.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
+      <TextArea fx:id="REFRAC" layoutX="545.0" layoutY="100.0" prefHeight="230.0" prefWidth="230.0" />
       
       <Label layoutX="25.0" layoutY="355.0" text="Error Anzeige" />
-      <TextField layoutX="25.0" layoutY="400.0" prefHeight="25.0" prefWidth="750.0" />	<!-- >Die Error Anzeige -->
+      <TextField fx:id="ERROR" layoutX="25.0" layoutY="400.0" prefHeight="25.0" prefWidth="750.0" />	<!-- >Die Error Anzeige -->
       
       <Label layoutX="25.0" layoutY="440.0" text="Output" />
-      <TextArea layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
+      <TextArea fx:id="OUT" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
       
    </children>
 </AnchorPane>
