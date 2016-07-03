@@ -10,9 +10,9 @@
    <children>									<!-- >die Buttons für die Grundfunktionen: Laden und Speichern sowie zwischen den TDD Schritten wechseln -->
    	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
    
-   	  <Button onAction="" layoutX="35.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Laden" />
-      <Button onAction="" layoutX="100.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Speichern" />
-      <Button onAction="" layoutX="300.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleNextStepButton" text="Next Step" />
+   	  <Button layoutX="35.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Laden" />
+      <Button layoutX="100.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Speichern" />
+      <Button layoutX="300.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleNextStepButton" text="Next Step" />
       
       <CheckBox fx:id="babystepsCheckBox" layoutX="475.0" layoutY="29.0" mnemonicParsing="false" text="Babysteps" /> <!-- >Felder für Zeitmessungen -->
       <TextField fx:id="timeTextField" layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="2.5 min" />
