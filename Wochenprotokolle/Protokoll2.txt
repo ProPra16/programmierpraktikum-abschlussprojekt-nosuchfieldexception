@@ -1,9 +1,9 @@
-Was waren die Zeile dieser Woche?
+Was waren die Ziele dieser Woche?
 
 	1. Unterteilung der Aufgaben in Teilbereiche
-	2. Grobe Besprechung was diese Teilbereiche tun müssen und was sie brauchen
+	2. Grobe Besprechung was diese Teilbereiche tun mÃ¼ssen und was sie brauchen
 	3. Aufteilung der Aufgaben
-	4. Das Umgehen mit Git verbessern um einfaches Arbeiten zu ermöglichen
+	4. Das Umgehen mit Git verbessern um einfaches Arbeiten zu ermÃ¶glichen
 	
 Wie hat geklappt?
 	1. Wir haben die Aufgaben wie folgt eingeteilt
@@ -12,18 +12,17 @@ Wie hat geklappt?
 		Erweiterung Tracking
 		Jens Bibliothek (Live Compiling)
 		File Handling
-	2. Jede Aufgabe hat eine eigene Liste mit Teilaufgaben bekommen zum besserren Verständnis
+	2. Jede Aufgabe hat eine eigene Liste mit Teilaufgaben bekommen zum besserren VerstÃ¤ndnis
 	3. Die Aufgaben wurden wie folgt aufgeteilt:
-		Arman Samary I4RM4NI "Design" und GUI : Design elemente variieren im Laufe der Programmierphase um wünschen und problemen entgegen zu kommen
-		Fabio Schlößer Vila "File Handling" : Implemntierung des File Handlings, Datenverarbeitung, Speicherung und Zuweisung der Funktionen an GUI Elemente.
+		Arman Samary I4RM4NI "Design" und GUI : Design elemente variieren im Laufe der Programmierphase um wÃ¼nschen und problemen entgegen zu kommen
+		Fabio SchlÃ¶ÃŸer Vila "File Handling" : Implemntierung des File Handlings, Datenverarbeitung, Speicherung und Zuweisung der Funktionen an GUI Elemente.
 		Julian Winter lullatsch "Babysteps" : Implementierung der Erweiterung Babysteps zusammen mit Design.
-		Jan Orlab CaptainFlaM0ng0 "Tracking" : Implementierung der Erweiterung Tracking zusammen mit Design und File Handling
+		Jan Orlob CaptainFlaM0ng0 "Tracking" : Implementierung der Erweiterung Tracking zusammen mit Design und File Handling
 		Tobias Vogt Lagiacrus24 "Live Compiling" : Implementierung der Funktion des Live Kompilierens.
 	4. Der Umgang mit Git wird immer besser, denoch sind wir noch in einer Testphase. Wir probieren das mergen in lokale Branches aus und versuchen
 		 so die Funktionen zu verstehen etc.
-		 Außerdem haben wir beschlossen das Mergen in den Master nur von einer person machen zu lassen um Probleme zu verhindern die durch missverständnisse
-		 kommen könnten zu verhidnern
-Ziele für nächste Woche?
+		 AuÃŸerdem haben wir beschlossen das Mergen in den Master nur von einer person machen zu lassen um Probleme zu verhindern die durch MissverstÃ¤ndnisse kommen kÃ¶nnten zu verhidnern
+Ziele fÃ¼r nÃ¤chste Woche?
 	Programmieren,Programmieren,Programmieren ;)
 		 
 		 Arman Samary
@@ -40,4 +39,4 @@ Ziele für nächste Woche?
 		
 		
 		
-		3.1 Design steht im Kontakt mit den anderen um Design wünsche direkt umzusetzten bzw. anzupassen (notwendige Felder,Knöpfe etc.)
+		3.1 Design steht im Kontakt mit den anderen um Design wÃ¼nsche direkt umzusetzten bzw. anzupassen (notwendige Felder,KnÃ¶pfe etc.)
