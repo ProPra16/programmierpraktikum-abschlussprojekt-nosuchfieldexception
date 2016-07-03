@@ -20,7 +20,7 @@
       <Label layoutX="25.0" layoutY="76.0" text="Test" />		<!-- >Die Textfelder der für den TDD Ablauf -->
       <TextArea fx:id="testArea" layoutX="25.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />	
       <Label layoutX="425.0" layoutY="76.0" text="Code" />
-      <TextArea fx:id="codeArea" layoutX="425.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />
+      <TextArea fx:id="codeArea" layoutX="425.0"  layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />
       
       <Label layoutX="25.0" layoutY="440.0" text="Output" />
       <TextArea fx:id="outputArea" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
