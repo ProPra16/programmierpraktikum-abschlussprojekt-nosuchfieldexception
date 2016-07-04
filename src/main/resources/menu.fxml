@@ -5,18 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tddt.MenuController">
    <children>									<!-- >die Buttons für die Grundfunktionen: Laden und Speichern sowie zwischen den TDD Schritten wechseln -->
    	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
    
-   	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" text="Laden" />
-      <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" text="Speichern" />
-      <Button layoutX="200.0" layoutY="25.0" mnemonicParsing="false" text="Nächster schritt" />
-      <Button layoutX="315.0" layoutY="25.0" mnemonicParsing="false" text="Voheriger Schritt" />
+   	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Laden" />
+      <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Speichern" />
+      <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleNextStepButton" text="Next Step" />
       
-      <CheckBox layoutX="450.0" layoutY="29.0" mnemonicParsing="false" text="Tracking" /> <!-- >Felder für Zeitmessungen -->
-      <TextField layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="Zeit eingeben" />
-      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Start" />
+      <CheckBox fx:id="babystepsCheckBox" layoutX="475.0" layoutY="29.0" mnemonicParsing="false" text="Babysteps" /> <!-- >Felder für Zeitmessungen -->
+      <TextField fx:id="timeTextField" layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="2.5 min" />
+      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleStartButton" text="Start" />
+      
+      <Label layoutX="25.0" layoutY="76.0" text="Test" />		<!-- >Die Textfelder der für den TDD Ablauf -->
+      <TextArea fx:id="testArea" layoutX="25.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />	
+      <Label layoutX="425.0" layoutY="76.0" text="Code" />
+      <TextArea fx:id="codeArea" layoutX="425.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />
+      
+      <Label layoutX="25.0" layoutY="440.0" text="Output" />
+      <TextArea fx:id="outputArea" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
       
    </children>
 </AnchorPane>
