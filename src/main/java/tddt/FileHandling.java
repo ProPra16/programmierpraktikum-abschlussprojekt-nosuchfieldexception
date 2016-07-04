@@ -41,6 +41,8 @@ public class FileHandling {
 		System.out.println(sep[2]);
 		return sep;
 	}
+	
+	
 
 	
 }
