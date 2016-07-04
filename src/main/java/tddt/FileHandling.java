@@ -10,16 +10,42 @@ import javafx.stage.Stage;
 
 public class FileHandling {
 	
-	public static String[] openFile(Stage s){
+	File file;
+	
+	public FileHandling (Stage s){
+		
 		
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Resource File");
-		File f = fileChooser.showOpenDialog(s);
+		fileChooser.setTitle("Open .propra File");
+		file = fileChooser.showOpenDialog(s);
+		
+		
+		
+		
+	}
+	
+	public String readTask(){
+		return separateString()[2];
+	}
+	
+	public String readTest(){
+		return separateString()[1];
+	}
+	
+	public String readClass(){
+		return separateString()[0];
+	}
+	
+	
+	
+	
+	
+	public static String[] separateString(){
 		
 		String line="";
 		String file = "";
 		
-	    try(BufferedReader b = new BufferedReader (new FileReader(f))) {
+	    try(BufferedReader b = new BufferedReader (new FileReader(file))) {
 	      while( (line = b.readLine()) != null ) {
 	    	  file+= line + "\n";
 	      }
@@ -29,16 +55,11 @@ public class FileHandling {
 	    }catch (IOException e) {
 	      System.out.println("Fehler: "+e.toString());
 	    }
-		
-	    return separateString(file);
-		
-	}
-	
-	public static String[] separateString(String full){
-		String[] sep = full.split("-----");
-		System.out.println(sep[0]);
-		System.out.println(sep[1]);
-		System.out.println(sep[2]);
+	    
+		String[] sep = file.split("-----");
+		//System.out.println(sep[0]);
+		//System.out.println(sep[1]);
+		//System.out.println(sep[2]);
 		return sep;
 	}
 	
