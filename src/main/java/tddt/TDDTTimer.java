@@ -1,57 +1,43 @@
 package tddt;
 
-import org.apache.commons.lang.time.StopWatch;
+import java.util.Timer;
 
 public class TDDTTimer {
 	
-	private StopWatch redTimer;
+	private Timer timer;
 	
-	private StopWatch greenTimer;
-	
-	private StopWatch refactorTimer;
-	
+	private TDDTTimerTask red, green, refactor;
 	
 	public TDDTTimer() {
-		redTimer = new StopWatch();
-		greenTimer = new StopWatch();
-		refactorTimer = new StopWatch();
-		
-		redTimer.start();
-		greenTimer.start();
-		greenTimer.suspend();
-		refactorTimer.start();
-		refactorTimer.suspend();
+		red = new TDDTTimerTask();
+		green = new TDDTTimerTask();
+		refactor = new TDDTTimerTask();
 	}
 	
 	public void changeToRedTimer() {
-		redTimer.resume();
-		greenTimer.suspend();
-		refactorTimer.suspend();
+		timer.cancel();
+		timer = new Timer();
+		timer.schedule(red, 0, 1000);
 	}
 	
 	public void changeToGreenTimer() {
-		redTimer.suspend();
-		greenTimer.resume();
-		refactorTimer.suspend();
+		timer.cancel();
+		timer = new Timer();
+		timer.schedule(green, 0, 1000);
 	}
 	
 	public void changeToRefactorTimer() {
-		redTimer.suspend();
-		greenTimer.suspend();
-		refactorTimer.resume();
+		timer.cancel();
+		timer = new Timer();
+		timer.schedule(refactor, 0, 1000);
 	}
 	
 	public void stop() {
-		redTimer.stop();
-		greenTimer.stop();
-		refactorTimer.stop();
+		timer.cancel();
 	}
 	
-	public String[] getTimer() {
-		String[] allTimer = new String[3];
-		allTimer[0] = redTimer.toString();
-		allTimer[1] = greenTimer.toString();
-		allTimer[2] = refactorTimer.toString();
+	public int[] getTimes() {
+		return new int[] {red.getTime(), green.getTime(), refactor.getTime()};
 	}
 	
 }
