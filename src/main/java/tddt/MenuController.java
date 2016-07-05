@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 
 public class MenuController {
 
-
 	private KataLiveCompiler compiler;
 	
 	/**
@@ -32,9 +31,11 @@ public class MenuController {
 
 	@FXML
 	private CheckBox babystepsCheckBox;
-	
+
 	@FXML
 	private TextField timeTextField;
+
+	private TDDTTimer tddttimer;
 
 	@FXML
 	public void handleLoadButton() {
@@ -81,53 +82,79 @@ public class MenuController {
 
 	@FXML
 	public void handleNextStepButton() {
-		if(babystepsCheckBox.isSelected() && timer != null) timer.stopAll();
-		this.compileCode();
-		//RED-Phase
-		Color tempPhase = phase;
-		if(phase.equals(Color.RED)){
-			
-			
-			//Condition to get to the next Phase:
-			//Have compiling code but erroring test(s)
-			if(compiler.codeCompilesAndDoesNotFulfillTests()){
-				phase = Color.GREEN;
-			}
-		//GREEN-PHASE
-		}else if(phase.equals(Color.GREEN)){
-			
-			
-			//Condition to get to the next Phase:
-			//Have compiling code and satisfied tests!
-			if(compiler.codeCompilesAndFulfillsTests()){
-				phase = Color.BLACK;
-			}
-		//Refactor-Phase
-		}else if(phase.equals(Color.BLACK)){
-			
-		}
-		if(babystepsCheckBox.isSelected() && timer != null) { //Babysteps: now next timer
-			if(!phase.equals(tempPhase)) { //Next step button successful
-				if(phase.equals(Color.RED)){
-					timer.startTestingTimer();
+		if (babystepsCheckBox.isSelected() && timer != null)
+			timer.stopAll();
+		//Check & Compile
+		if (this.compileCode()) {
+			// RED-Phase
+			Color tempPhase = phase;
+			if (phase.equals(Color.RED)) {
+
+				// Condition to get to the next Phase:
+				// Have compiling code but erroring test(s)
+				if (compiler.codeCompilesAndDoesNotFulfillTests()) {
+					phase = Color.GREEN;
+					tddttimer.changeToCodingTimer();
 				}
-				else if(phase.equals(Color.GREEN)){
-					timer.startCodingTimer();
+				// GREEN-PHASE
+			} else if (phase.equals(Color.GREEN)) {
+
+				// Condition to get to the next Phase:
+				// Have compiling code and satisfied tests!
+				if (compiler.codeCompilesAndFulfillsTests()) {
+					phase = Color.BLACK;
+					tddttimer.changeToRefactorTimer();
+				}
+				// Refactor-Phase
+			} else if (phase.equals(Color.BLACK)) {
+
+				// Condition to get to the next Phase:
+				// Have compiling code and satisfied tests!
+				if (compiler.codeCompilesAndFulfillsTests()) {
+					phase = Color.RED;
+					tddttimer.changeToTestingTimer();
+				}
+			}
+			if (babystepsCheckBox.isSelected() && timer != null) { // Babysteps:
+																	// now
+																	// next
+																	// timer
+				if (!phase.equals(tempPhase)) { // Next step button successful
+					if (phase.equals(Color.RED)) {
+						timer.startTestingTimer();
+					} else if (phase.equals(Color.GREEN)) {
+						timer.startCodingTimer();
+					}
 				}
 			}
 		}
 	}
 
-	private void compileCode() {
+	/**
+	 * Compiles the code and checks if it compiles without severe errors.
+	 * 
+	 * @return True if no severe errors detected.
+	 */
+	private boolean compileCode() {
+		outputArea.setText("");
 		// Check if it can be a valid class
-		if (!codeArea.getText().contains("class")) {
-			outputArea.setText("Die Code-Klasse ist noch keine Klasse...");
-		}
-		if (!testArea.getText().contains("class")) {
-			outputArea.setText(outputArea.getText() + "\nDie Test-Klasse ist noch keine Klasse...");
+		if (!testArea.getText().contains("public class")) {
+			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'");
+			return false;
+		} else if (!codeArea.getText().contains("public class")) {
+			outputArea.setText("Die Code-Klasse enthält noch kein 'public class'");
+			return false;
+			// Class name missing
+		} else if (testArea.getText().indexOf("{") < 16) {
+			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben");
+			return false;
+		} else if (codeArea.getText().indexOf("{") < 16) {
+			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben");
+			return false;
 		} else {
 			KataLiveCompiler compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
 			outputArea.setText(compiler.getErrors());
+			return true;
 		}
 	}
 

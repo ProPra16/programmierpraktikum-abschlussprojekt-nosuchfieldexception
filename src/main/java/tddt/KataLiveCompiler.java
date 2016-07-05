@@ -11,8 +11,8 @@ import vk.core.api.JavaStringCompiler;
 
 public class KataLiveCompiler {
 
-	private JavaStringCompiler compiler;
-	private CompilationUnit codeClass, testClass;
+	private final JavaStringCompiler compiler;
+	private final CompilationUnit codeClass, testClass;
 
 	/**
 	 * Creates a new Instance of KataLiveCompiler, compiles the code and runs
@@ -64,16 +64,16 @@ public class KataLiveCompiler {
 		CompilerResult result = compiler.getCompilerResult();
 		if (result.hasCompileErrors()) {
 			String errorString = "";
-			// Fetch codeClass compile-errors
-			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
-			for (CompileError error : codeClassErrors) {
-				errorString += "Fehler in der Code-Klasse: \n" + "Zeile " + error.getLineNumber() + ": "
-						+ error.getMessage() + "\n";
-			}
 			// Fetch testClass compile-errors
 			Collection<CompileError> testClassErrors = result.getCompilerErrorsForCompilationUnit(testClass);
 			for (CompileError error : testClassErrors) {
 				errorString += "Fehler in der Test-Klasse: \n" + "Zeile " + error.getLineNumber() + ": "
+						+ error.getMessage() + "\n";
+			}
+			// Fetch codeClass compile-errors
+			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
+			for (CompileError error : codeClassErrors) {
+				errorString += "Fehler in der Code-Klasse: \n" + "Zeile " + error.getLineNumber() + ": "
 						+ error.getMessage() + "\n";
 			}
 			return errorString;
@@ -91,14 +91,14 @@ public class KataLiveCompiler {
 		CompilerResult result = compiler.getCompilerResult();
 		ArrayList<String> errorLines = new ArrayList<>();
 		if (result.hasCompileErrors()) {
-			// Fetch codeClass compile-error-lines
-			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
-			for (CompileError error : codeClassErrors) {
-				errorLines.add(error.getLineNumber() + ": " + error.getCodeLineContainingTheError());
-			}
 			// Fetch testClass compile-errors-lines
 			Collection<CompileError> testClassErrors = result.getCompilerErrorsForCompilationUnit(testClass);
 			for (CompileError error : testClassErrors) {
+				errorLines.add(error.getLineNumber() + ": " + error.getCodeLineContainingTheError());
+			}
+			// Fetch codeClass compile-error-lines
+			Collection<CompileError> codeClassErrors = result.getCompilerErrorsForCompilationUnit(codeClass);
+			for (CompileError error : codeClassErrors) {
 				errorLines.add(error.getLineNumber() + ": " + error.getCodeLineContainingTheError());
 			}
 		}
