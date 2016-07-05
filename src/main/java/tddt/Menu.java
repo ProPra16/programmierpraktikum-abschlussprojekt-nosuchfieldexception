@@ -23,6 +23,7 @@ public class Menu extends Application {
 		primaryStage.setTitle("TDDT");
 	    primaryStage.centerOnScreen();
 		primaryStage.show();
+
 	}
 
 	public static void main(String[] args) {

@@ -35,8 +35,6 @@ public class MenuController {
 	
 	@FXML
 	private TextField timeTextField;
-	
-	private TDDTTimer tddttimer;
 
 	@FXML
 	public void handleLoadButton() {
@@ -52,7 +50,6 @@ public class MenuController {
 	@FXML
 	public void handleStartButton() {
 		//TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just for progress
-		tddttimer = new TDDTTimer(); // Creates a Timer for Tracking
 		if(babystepsCheckBox.isSelected()) { //Babysteps!
 			timer = new CustomTimer(new BabystepsUser() {
 				
@@ -70,14 +67,12 @@ public class MenuController {
 					phase = Color.BLACK;
 				}
 			}, (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60), (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60)); //Missing 2nd field
-
+			
 			if(phase.equals(Color.RED)) { //For example
-				timer.startTestingTimer();
-				tddttimer.changeToTestingTimer();
+				timer.startTestingTimer();				
 			}
 			else if(phase.equals(Color.GREEN)) {
 				timer.startCodingTimer();
-				tddttimer.changeToCodingTimer();
 			}
 		} else { //No Babysteps
 			
@@ -97,7 +92,6 @@ public class MenuController {
 			//Have compiling code but erroring test(s)
 			if(compiler.codeCompilesAndDoesNotFulfillTests()){
 				phase = Color.GREEN;
-				tddttimer.changeToCodingTimer();
 			}
 		//GREEN-PHASE
 		}else if(phase.equals(Color.GREEN)){
@@ -107,18 +101,10 @@ public class MenuController {
 			//Have compiling code and satisfied tests!
 			if(compiler.codeCompilesAndFulfillsTests()){
 				phase = Color.BLACK;
-				tddttimer.changeToRefactorTimer();
 			}
 		//Refactor-Phase
 		}else if(phase.equals(Color.BLACK)){
 			
-			
-			//Condition to get to the next Phase:
-			//Have compiling code and satisfied tests!
-			if(compiler.codeCompilesAndFulfillsTests()){
-				phase = Color.RED;
-				tddttimer.changeToTestingTimer();
-			}
 		}
 		if(babystepsCheckBox.isSelected() && timer != null) { //Babysteps: now next timer
 			if(!phase.equals(tempPhase)) { //Next step button successful
