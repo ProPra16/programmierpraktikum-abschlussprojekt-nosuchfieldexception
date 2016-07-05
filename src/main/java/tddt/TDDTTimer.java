@@ -21,19 +21,19 @@ public class TDDTTimer {
 		refactorTimer.suspend();
 	}
 	
-	public changeToRedTimer() {
+	public void changeToRedTimer() {
 		redTimer.resume();
 		greenTimer.suspend();
 		refactorTimer.suspend();
 	}
 	
-	public changeToGreenTimer() {
+	public void changeToGreenTimer() {
 		redTimer.suspend();
 		greenTimer.resume();
 		refactorTimer.suspend();
 	}
 	
-	public changeToRefactorTimer() {
+	public void changeToRefactorTimer() {
 		redTimer.suspend();
 		greenTimer.suspend();
 		refactorTimer.resume();
