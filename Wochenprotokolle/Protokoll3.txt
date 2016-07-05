@@ -1,0 +1,24 @@
+Filehandling:
+  + Dateien laden
+  - Dateien speichern
+  - Zusammenarbeit GUI
+
+Tracking:
+  + Timerklasse
+  - starten und stoppen der Timer
+  - Auswertung
+
+Live-Compiling:
+  + fertig
+  
+Design:
+  + grobes Interface
+  - auf Vollbild ändern
+  - Textfelder dementsprechend anpassen
+  - Icons einfügen
+  - Auswertungsfenster
+  
+Babysteps:
+  + Timer
+  - Verknüpfung zur GUI
+  - Zahlenkontrolle
