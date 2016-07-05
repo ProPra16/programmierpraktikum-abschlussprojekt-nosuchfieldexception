@@ -133,13 +133,15 @@ public class MenuController {
 	}
 
 	private void compileCode() {
+		outputArea.setText("");
 		// Check if it can be a valid class
-		if (!codeArea.getText().contains("class")) {
-			outputArea.setText("Die Code-Klasse ist noch keine Klasse...");
-		}
-		if (!testArea.getText().contains("class")) {
-			outputArea.setText(outputArea.getText() + "\nDie Test-Klasse ist noch keine Klasse...");
-		} else {
+		
+		if (!testArea.getText().contains("public class")) {
+			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'");
+		} 
+		if (!codeArea.getText().contains("public class")) {
+			outputArea.setText(outputArea.getText() + "\nDie Code-Klasse enthält noch kein 'public class'");
+		}else {
 			KataLiveCompiler compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
 			outputArea.setText(compiler.getErrors());
 		}
