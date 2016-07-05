@@ -18,10 +18,7 @@ public class FileHandling {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open .propra File");
 		file = fileChooser.showOpenDialog(s);
-		
-		
-		
-		
+
 	}
 	
 	public String readTask(){
