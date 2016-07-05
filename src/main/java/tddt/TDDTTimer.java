@@ -6,24 +6,24 @@ public class TDDTTimer {
 	
 	private Timer timer;
 	
-	private TDDTTimerTask red, green, refactor;
+	private TDDTTimerTask test, code, refactor;
 	
 	public TDDTTimer() {
-		red = new TDDTTimerTask();
-		green = new TDDTTimerTask();
+		test = new TDDTTimerTask();
+		code = new TDDTTimerTask();
 		refactor = new TDDTTimerTask();
 	}
 	
-	public void changeToRedTimer() {
+	public void changeToTestingTimer() {
 		timer.cancel();
 		timer = new Timer();
-		timer.schedule(red, 0, 1000);
+		timer.schedule(test, 0, 1000);
 	}
 	
-	public void changeToGreenTimer() {
+	public void changeToCodingTimer() {
 		timer.cancel();
 		timer = new Timer();
-		timer.schedule(green, 0, 1000);
+		timer.schedule(code, 0, 1000);
 	}
 	
 	public void changeToRefactorTimer() {
@@ -37,7 +37,7 @@ public class TDDTTimer {
 	}
 	
 	public int[] getTimes() {
-		return new int[] {red.getTime(), green.getTime(), refactor.getTime()};
+		return new int[] {test.getTime(), code.getTime(), refactor.getTime()};
 	}
 	
 }
