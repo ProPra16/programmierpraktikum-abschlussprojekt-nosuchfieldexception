@@ -1,5 +1,7 @@
 package tddt;
 
+import org.apache.commons.lang.time.StopWatch;
+
 public class TDDTTimer {
 	
 	private StopWatch redTimer;
