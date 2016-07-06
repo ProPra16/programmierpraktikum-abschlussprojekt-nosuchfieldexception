@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.control.*?>
@@ -16,25 +19,26 @@
       </font>
     </Label>
     <Label font="$x1" layoutX="1288.0" layoutY="35.0" text="Code &amp; Refractor" />
-    <TextArea layoutX="1080.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
-    <TextArea layoutX="240.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1600.0" AnchorPane.topAnchor="0.0">
+    <TextArea fx:id="codeIn" layoutX="1080.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
+    <TextArea fx:id="testIn" layoutX="240.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1717.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Button layoutX="13.0" layoutY="29.0" mnemonicParsing="false" prefWidth="146.0" text="Laden" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0" />
-        <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" prefWidth="146.0" text="Speichern" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="65.0" />
-        <Button layoutX="16.0" layoutY="121.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="121.0" />
-        <Button layoutX="15.0" layoutY="429.0" mnemonicParsing="false" prefWidth="146.0" text="Start" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="430.0" />
-        <TextField layoutX="14.0" layoutY="396.0" prefWidth="147.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="400.0" />
+        <Button fx:id="load" layoutX="13.0" layoutY="29.0" mnemonicParsing="false" prefWidth="146.0" snapToPixel="false" text="Laden" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0" />
+        <Button fx:id="save" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" prefWidth="146.0" text="Speichern" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="65.0" />
+        <Button fx:id="next" layoutX="16.0" layoutY="121.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="121.0" />
+        <Button fx:id="start" layoutX="15.0" layoutY="429.0" mnemonicParsing="false" prefWidth="146.0" text="Start" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="430.0" />
+        <TextField fx:id="TimeIn" layoutX="14.0" layoutY="396.0" prefWidth="147.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="400.0" />
         <Label layoutX="15.0" layoutY="342.0" text="Zeit eingeben" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="350.0">
                <font>
                   <Font size="24.0" />
-               </font></Label>
+               </font>
+        </Label>
         <Label layoutX="13.0" layoutY="247.0" prefWidth="146.0" text="      Timer" textAlignment="LEFT" wrapText="true" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="247.0">
           <font>
             <Font name="System Bold" size="24.0" />
           </font>
         </Label>
-        <Label layoutX="27.0" layoutY="282.0" text="0000" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="282.0">
+        <Label fx:id="timeOut" layoutX="27.0" layoutY="282.0" text="0000" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="282.0">
           <font>
             <Font name="OCR A Extended" size="50.0" />
           </font>
@@ -42,4 +46,10 @@
       </children>
     </AnchorPane>
   </children>
+   <opaqueInsets>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </opaqueInsets>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
 </AnchorPane>
