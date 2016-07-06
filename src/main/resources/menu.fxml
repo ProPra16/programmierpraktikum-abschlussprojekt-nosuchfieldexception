@@ -23,26 +23,30 @@
     <TextArea fx:id="testIn" layoutX="240.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1717.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Button fx:id="load" layoutX="13.0" layoutY="29.0" mnemonicParsing="false" prefWidth="146.0" snapToPixel="false" text="Laden" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0" />
-        <Button fx:id="save" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" prefWidth="146.0" text="Speichern" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="65.0" />
-        <Button fx:id="next" layoutX="16.0" layoutY="121.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="121.0" />
-        <Button fx:id="start" layoutX="15.0" layoutY="429.0" mnemonicParsing="false" prefWidth="146.0" text="Start" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="430.0" />
-        <TextField fx:id="TimeIn" layoutX="14.0" layoutY="396.0" prefWidth="147.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="400.0" />
-        <Label layoutX="15.0" layoutY="342.0" text="Zeit eingeben" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="350.0">
+        <Button fx:id="load" layoutX="30.0" layoutY="205.0" mnemonicParsing="false" prefWidth="146.0" snapToPixel="false" text="Laden" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="205.0" />
+        <Button fx:id="save" layoutX="29.0" layoutY="240.0" mnemonicParsing="false" prefWidth="146.0" text="Speichern" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="240.0" />
+        <Button fx:id="next" layoutX="31.0" layoutY="296.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="296.0" />
+        <Button fx:id="start" layoutX="29.0" layoutY="535.0" mnemonicParsing="false" prefWidth="146.0" text="Start" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="535.0" />
+        <TextField fx:id="TimeIn" layoutX="29.0" layoutY="505.0" prefWidth="147.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="505.0" />
+        <Label layoutX="32.0" layoutY="457.0" text="Zeit eingeben" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="457.0">
                <font>
                   <Font size="24.0" />
-               </font>
-        </Label>
-        <Label layoutX="13.0" layoutY="247.0" prefWidth="146.0" text="      Timer" textAlignment="LEFT" wrapText="true" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="247.0">
+               </font></Label>
+        <Label layoutX="27.0" layoutY="352.0" prefWidth="146.0" text="      Timer" textAlignment="LEFT" wrapText="true" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="352.0">
           <font>
             <Font name="System Bold" size="24.0" />
           </font>
         </Label>
-        <Label fx:id="timeOut" layoutX="27.0" layoutY="282.0" text="0000" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="282.0">
+        <Label fx:id="timeOut" layoutX="41.0" layoutY="387.0" text="0000" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="387.0">
           <font>
             <Font name="OCR A Extended" size="50.0" />
           </font>
         </Label>
+            <ImageView fitHeight="167.0" fitWidth="163.0" layoutX="23.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logo.PNG" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>
