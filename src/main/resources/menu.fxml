@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tddt.MenuController">
-   <children>									<!-- >die Buttons für die Grundfunktionen: Laden und Speichern sowie zwischen den TDD Schritten wechseln -->
-   	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
-   
-   	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Laden" />
-	   	  <graphic>
-	        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-	          <image>
-	            <Image url="http://icons.iconarchive.com/icons/mirella-gabriele/fantasy-mediaeval/128/Poison-red-icon.png" />
-	          </image>
-	        </ImageView>
-	      </graphic>
-      <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Speichern" />
-      <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleNextStepButton" text="Next Step" />
-      
-      <CheckBox fx:id="babystepsCheckBox" layoutX="475.0" layoutY="29.0" mnemonicParsing="false" text="Babysteps" /> <!-- >Felder für Zeitmessungen -->
-      <TextField fx:id="timeTextField" layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="2.5 min" />
-      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleStartButton" text="Start" />
-      
-      <Label layoutX="25.0" layoutY="76.0" text="Test" />		<!-- >Die Textfelder der für den TDD Ablauf -->
-      <TextArea fx:id="testArea" layoutX="25.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />	
-      <Label layoutX="425.0" layoutY="76.0" text="Code" />
-      <TextArea fx:id="codeArea" layoutX="425.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />
-      
-      <Label layoutX="25.0" layoutY="440.0" text="Output" />
-      <TextArea fx:id="outputArea" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
-      
-   </children>
+<AnchorPane id="AnchorPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label layoutX="590.0" layoutY="35.0" prefHeight="61.0" prefWidth="100.0" text="Test">
+      <font>
+        <Font size="50.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TextArea layoutX="1080.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
+    <TextArea layoutX="240.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1600.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button layoutX="13.0" layoutY="29.0" mnemonicParsing="false" prefWidth="146.0" text="Laden" />
+        <Button layoutX="14.0" layoutY="66.0" mnemonicParsing="false" prefWidth="146.0" text="Speichern" />
+        <Button layoutX="13.0" layoutY="127.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" />
+        <Button layoutX="15.0" layoutY="429.0" mnemonicParsing="false" prefWidth="146.0" text="Start" />
+        <TextField layoutX="14.0" layoutY="396.0" prefWidth="147.0" />
+        <Label layoutX="17.0" layoutY="352.0" text="Zeit eingeben">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+        <Label layoutX="13.0" layoutY="247.0" prefWidth="146.0" text="      Timer" textAlignment="LEFT" wrapText="true">
+          <font>
+            <Font name="System Bold" size="24.0" />
+          </font>
+        </Label>
+        <Label layoutX="26.0" layoutY="282.0" text="0000">
+          <font>
+            <Font name="OCR A Extended" size="50.0" />
+          </font>
+        </Label>
+      </children>
+    </AnchorPane>
+    <Label font="$x1" layoutX="1288.0" layoutY="35.0" text="Code &amp; Refractor" />
+  </children>
 </AnchorPane>
