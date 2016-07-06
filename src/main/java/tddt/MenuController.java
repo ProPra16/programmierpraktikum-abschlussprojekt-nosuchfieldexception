@@ -140,26 +140,22 @@ public class MenuController {
 		// Check if it can be a valid class
 		if (!testArea.getText().contains("public class")) {
 			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'.");
-			return false;
 		} else if (!codeArea.getText().contains("public class")) {
 			outputArea.setText("Die Code-Klasse enthält noch kein 'public class'.");
-			return false;
 			// Class name missing
 		} else if (testArea.getText().indexOf("{") < 14) {
 			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben.");
-			return false;
 		} else if (codeArea.getText().indexOf("{") < 14) {
 			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben.");
-			return false;
 			//Tests missing
 		} else if(!testArea.getText().contains("@Test")){
 			outputArea.setText("Keine Tests vorhanden.");
-			return false;
 		} else {
 			KataLiveCompiler compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
 			outputArea.setText(compiler.getErrors());
 			return true;
 		}
+		return false;
 	}
 
 }
