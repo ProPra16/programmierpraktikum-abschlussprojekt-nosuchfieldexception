@@ -4,12 +4,6 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -34,7 +28,7 @@
         <Button fx:id="next" layoutX="31.0" layoutY="296.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="296.0" />
         <Button fx:id="start" layoutX="29.0" layoutY="535.0" mnemonicParsing="false" prefWidth="146.0" text="Start" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="535.0" />
         <TextField fx:id="TimeIn" layoutX="29.0" layoutY="505.0" prefWidth="147.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="505.0" />
-        <Label layoutX="32.0" layoutY="457.0" text="Zeit eingeben" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="457.0">
+        <Label layoutX="32.0" layoutY="457.0" prefHeight="35.0" prefWidth="147.0" text="Zeit eingeben" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="457.0">
                <font>
                   <Font size="24.0" />
                </font></Label>
