@@ -85,7 +85,7 @@ public class MenuController {
 		if (babystepsCheckBox.isSelected() && timer != null)
 			timer.stopAll();
 		//Check & Compile
-		compiler = KataLiveCompiler.constructCompiler(codeArea.getText(), testArea.getText(), outputArea);
+		compiler = KataLiveCompiler.constructCompiler(testArea.getText(), codeArea.getText(), outputArea);
 		if (compiler != null) {
 			// RED-Phase
 			Color tempPhase = phase;
