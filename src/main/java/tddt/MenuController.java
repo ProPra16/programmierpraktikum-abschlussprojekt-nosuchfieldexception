@@ -151,7 +151,7 @@ public class MenuController {
 		} else if(!testArea.getText().contains("@Test")){
 			outputArea.setText("Keine Tests vorhanden.");
 		} else {
-			KataLiveCompiler compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
+			compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
 			outputArea.setText(compiler.getErrors());
 			return true;
 		}

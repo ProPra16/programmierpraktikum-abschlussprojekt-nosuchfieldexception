@@ -38,8 +38,12 @@ public class KataLiveCompiler {
 	 *         tests are satisfied.
 	 */
 	public boolean codeCompilesAndFulfillsTests() {
-		return !compiler.getCompilerResult().hasCompileErrors()
-				&& compiler.getTestResult().getNumberOfFailedTests() == 0;
+		try {
+			return !compiler.getCompilerResult().hasCompileErrors()
+					&& compiler.getTestResult().getNumberOfFailedTests() == 0;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
@@ -50,8 +54,12 @@ public class KataLiveCompiler {
 	 *         tests are not satisfied.
 	 */
 	public boolean codeCompilesAndDoesNotFulfillTests() {
-		return !compiler.getCompilerResult().hasCompileErrors()
-				&& compiler.getTestResult().getNumberOfFailedTests() > 0;
+		try {
+			return !compiler.getCompilerResult().hasCompileErrors()
+					&& compiler.getTestResult().getNumberOfFailedTests() > 0;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
