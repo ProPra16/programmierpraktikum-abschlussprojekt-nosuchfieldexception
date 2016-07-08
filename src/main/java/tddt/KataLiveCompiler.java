@@ -3,6 +3,7 @@ package tddt;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javafx.scene.control.TextArea;
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 import vk.core.api.CompilerFactory;
@@ -28,6 +29,36 @@ public class KataLiveCompiler {
 		testClass = new CompilationUnit(this.getClassName(testClassSourcecode), testClassSourcecode, false);
 		compiler = CompilerFactory.getCompiler(codeClass, testClass);
 		compiler.compileAndRunTests();
+	}
+	
+	/**
+	 * Constructs a new KataLiveCompiler and checks before that, if the Code can be compiled without severe errors.
+	 * @param inputTest The Test-Class-Code to compile
+	 * @param inputCode The Code-Class-Code to compile
+	 * @param outputArea The TextArea to write errors on
+	 * @return A new Compiler if there are no severe errors, else returns null
+	 */
+	public static KataLiveCompiler constructCompiler(String inputTest, String inputCode, TextArea outputArea){
+		outputArea.setText("");
+		// Check if it can be a valid class
+		if (!inputTest.contains("public class")) {
+			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'.");
+		} else if (!inputCode.contains("public class")) {
+			outputArea.setText("Die Code-Klasse enthält noch kein 'public class'.");
+			// Class name missing
+		} else if (inputTest.indexOf("{") < 14) {
+			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben.");
+		} else if (inputCode.indexOf("{") < 14) {
+			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben.");
+			//Tests missing
+		} else if(inputTest.contains("@Test")){
+			outputArea.setText("Keine Tests vorhanden.");
+		} else {
+			KataLiveCompiler newCompiler = new KataLiveCompiler(inputCode, inputTest);
+			outputArea.setText(newCompiler.getErrors());
+			return newCompiler;
+		}
+		return null;
 	}
 
 	/**

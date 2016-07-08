@@ -85,7 +85,8 @@ public class MenuController {
 		if (babystepsCheckBox.isSelected() && timer != null)
 			timer.stopAll();
 		//Check & Compile
-		if (this.compileCode()) {
+		compiler = KataLiveCompiler.constructCompiler(codeArea.getText(), testArea.getText(), outputArea);
+		if (compiler != null) {
 			// RED-Phase
 			Color tempPhase = phase;
 			if (phase.equals(Color.RED)) {
@@ -129,33 +130,4 @@ public class MenuController {
 			}
 		}
 	}
-
-	/**
-	 * Compiles the code and checks if it compiles without severe errors.
-	 * 
-	 * @return True if no severe errors detected.
-	 */
-	private boolean compileCode() {
-		outputArea.setText("");
-		// Check if it can be a valid class
-		if (!testArea.getText().contains("public class")) {
-			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'.");
-		} else if (!codeArea.getText().contains("public class")) {
-			outputArea.setText("Die Code-Klasse enthält noch kein 'public class'.");
-			// Class name missing
-		} else if (testArea.getText().indexOf("{") < 14) {
-			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben.");
-		} else if (codeArea.getText().indexOf("{") < 14) {
-			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben.");
-			//Tests missing
-		} else if(!testArea.getText().contains("@Test")){
-			outputArea.setText("Keine Tests vorhanden.");
-		} else {
-			compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
-			outputArea.setText(compiler.getErrors());
-			return true;
-		}
-		return false;
-	}
-
 }
