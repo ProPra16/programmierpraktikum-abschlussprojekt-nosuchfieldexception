@@ -5,6 +5,7 @@ import babysteps.BabystepsUser;
 import babysteps.CustomTimer;
 import babysteps.TDDCycle;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import javafx.scene.paint.Color;
 public class MenuController {
 
 	private KataLiveCompiler compiler;
+	private String oldCodeClass;
 
 	/**
 	 * Obvious choice, innit?
@@ -34,6 +36,9 @@ public class MenuController {
 
 	@FXML
 	private TextField timeTextField;
+	
+	@FXML
+	private Button backToRedButton;
 
 	private TDDTTimer tddttimer;
 
@@ -128,9 +133,10 @@ public class MenuController {
 			// Notify the user
 			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
 					+ "Den fehlschlagenden Test erfüllen :)");
-			// Activate/Deactivate TextAreas
+			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
 			codeArea.setEditable(true);
+			backToRedButton.setDisable(false);
 			// tddttimer.changeToCodingTimer();
 		} else {
 			// Requirements not met
@@ -151,9 +157,10 @@ public class MenuController {
 			// Notify the user
 			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
 					+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
-			// Activate/Deactivate TextAreas
+			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
 			codeArea.setEditable(true);
+			backToRedButton.setDisable(true);
 			// tddttimer.changeToRefactorTimer();
 		} else {
 			// Requirements not met
@@ -177,6 +184,7 @@ public class MenuController {
 			// Activate/Deactivate TextAreas
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
+			backToRedButton.setDisable(true);
 			// tddttimer.changeToTestingTimer();
 		} else {
 			// Requirements not met
@@ -198,11 +206,12 @@ public class MenuController {
 		if (phase == Color.GREEN) {
 			phase = Color.RED;
 			// Notify the user
-			outputArea.setText(outputArea.getText() + "\nBWillkommen zurück in der RED-Phase:\n"
+			outputArea.setText("\nWillkommen zurück in der RED-Phase:\n"
 					+ "Einen fehlschlagenden Test schreiben :)");
-			// Activate/Deactivate TextAreas
+			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
+			backToRedButton.setDisable(true);
 			// tddttimer.changeToTestingTimer();
 		} else {
 			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
