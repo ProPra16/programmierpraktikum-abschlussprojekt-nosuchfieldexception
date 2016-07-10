@@ -35,7 +35,7 @@ public class MenuController {
 	@FXML
 	private TextField timeTextField;
 
-	private TDDTTimer tddttimer;
+	private TDDTTimer tddttimer = new TDDTTimer();
 
 	@FXML
 	public void handleLoadButton() {
