@@ -28,7 +28,7 @@ public class KataLiveCompiler {
 	 */
 	public KataLiveCompiler(String codeClassSourcecode, String testClassSourcecode) {
 		codeClass = new CompilationUnit(this.getClassName(codeClassSourcecode), codeClassSourcecode, false);
-		testClass = new CompilationUnit(this.getClassName(testClassSourcecode), testClassSourcecode, false);
+		testClass = new CompilationUnit(this.getClassName(testClassSourcecode), testClassSourcecode, true);
 		compiler = CompilerFactory.getCompiler(codeClass, testClass);
 		compiler.compileAndRunTests();
 	}
@@ -99,7 +99,7 @@ public class KataLiveCompiler {
 			return false;
 		}
 	}
-
+	
 	public String getFailedTestMessages() {
 		try {
 			String errors = "";
@@ -167,22 +167,6 @@ public class KataLiveCompiler {
 		}
 		return errorLines;
 	}
-	
-	/**
-	 * Returns a Collection of Errors
-	 * @return Errors of the test class
-	 */
-	public Collection<CompileError> getTestClassErrors(){
-		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(testClass);
-	}
-	
-	/**
-	 * Returns a Collection of Errors
-	 * @return Errors of the code class
-	 */
-	public Collection<CompileError> getCodeClassErrors(){
-		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(codeClass);
-	}
 
 	/**
 	 * Returns the name of the class, by looking in the sourcecode
@@ -205,5 +189,30 @@ public class KataLiveCompiler {
 		// Remove whitespace
 		className = className.replace(" ", "");
 		return className;
+	}
+	
+	
+	/**
+	 * Returns a Collection of Errors
+	 * @return Errors of the test class
+	 */
+	public Collection<CompileError> getTestClassErrors(){
+		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(testClass);
+	}
+	
+	/**
+	 * Returns a Collection of Errors
+	 * @return Errors of the code class
+	 */
+	public Collection<CompileError> getCodeClassErrors(){
+		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(codeClass);
+	}
+	
+	/**
+	 * Returns the TestResult of this comilation unit
+	 * @return The testResult of this compiler
+	 */
+	public TestResult getTestResult(){
+		return compiler.getTestResult();
 	}
 }

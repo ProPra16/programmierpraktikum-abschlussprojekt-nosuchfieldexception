@@ -1,8 +1,10 @@
 package tddt;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import vk.core.api.TestResult;
 
 
 public class KataLiveCompilerTest {
@@ -42,7 +44,7 @@ public class KataLiveCompilerTest {
 						+ "   }\n "
 						+ "}");
 		boolean wrong = compiler.codeCompilesAndDoesNotFulfillTests();
-		assertTrue("correct class and wrong tests should return 'false'", !wrong);
+		assertTrue("correct class and wrong tests should return 'false'", wrong);
 	}
 	
 	@Test public void compilerCreatesTheCorrectErrorString(){
@@ -116,13 +118,19 @@ public class KataLiveCompilerTest {
 					"import static org.junit.Assert.*;\n"
 						+ "import org.junit.Test;\n"
 						+ "public class TwentyFourTest { \n"
-						+ "   @Test\n"
-						+ "   public void isItReallyTwentyFour() { \n "
+						+ "   @Test \n"
+						+ "   public void fail() { \n "
 						+ "       fail(); \n"
 						+ "   }\n "
+						+ "   @Test \n"
+						+ "   public void isItReallyTwentyFour() { \n "
+						+ "       assertEquals(24, TwentyFour.twentyFour()); \n"
+						+ "   }\n "
 						+ "}");
-		boolean result = compiler.codeCompilesAndDoesNotFulfillTests();
-		assertTrue("The test fails, therefore the Method should return 'true'", result);
+		TestResult result = compiler.getTestResult();
+		assertEquals(1, result.getNumberOfSuccessfulTests());
+		assertEquals(1, result.getNumberOfFailedTests());
+		assertEquals(0, result.getNumberOfIgnoredTests());
 	}
 	
 	
