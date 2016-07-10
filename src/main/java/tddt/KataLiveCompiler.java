@@ -99,16 +99,23 @@ public class KataLiveCompiler {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Builds a String composed of all Test-Errors and returns them with a new
+	 * line at the end of each error.
+	 * 
+	 * @return The String of Test-Errors
+	 */
 	public String getFailedTestMessages() {
 		try {
 			String errors = "";
 			TestResult result = compiler.getTestResult();
 			for (TestFailure failure : result.getTestFailures()) {
-				errors += failure.getMessage() + "\n";
+				errors += "Testmethode '" + failure.getMethodName() + "' ist fehlgeschlagen: " + failure.getMessage()
+						+ "\n";
 			}
-			//String empty = All tests happy
-			if(errors.equals("")){
+			// String empty = All tests happy
+			if (errors.equals("")) {
 				return "Keine fehlschlagenden Tests!";
 			}
 			return errors;
@@ -190,21 +197,22 @@ public class KataLiveCompiler {
 		className = className.replace(" ", "");
 		return className;
 	}
-	
-	
+
 	/**
 	 * Returns a Collection of Errors
+	 * 
 	 * @return Errors of the test class
 	 */
-	public Collection<CompileError> getTestClassErrors(){
+	public Collection<CompileError> getTestClassErrors() {
 		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(testClass);
 	}
-	
+
 	/**
 	 * Returns a Collection of Errors
+	 * 
 	 * @return Errors of the code class
 	 */
-	public Collection<CompileError> getCodeClassErrors(){
+	public Collection<CompileError> getCodeClassErrors() {
 		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(codeClass);
 	}
 }

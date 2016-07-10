@@ -118,7 +118,7 @@ public class MenuController {
 					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
 															+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
 					//Activate/Deactivate TextAreas
-					testArea.setEditable(true);
+					testArea.setEditable(false);
 					codeArea.setEditable(true);
 					//tddttimer.changeToRefactorTimer();
 				}else{
