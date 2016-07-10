@@ -9,6 +9,8 @@ import vk.core.api.CompileError;
 import vk.core.api.CompilerFactory;
 import vk.core.api.CompilerResult;
 import vk.core.api.JavaStringCompiler;
+import vk.core.api.TestFailure;
+import vk.core.api.TestResult;
 
 public class KataLiveCompiler {
 
@@ -30,15 +32,20 @@ public class KataLiveCompiler {
 		compiler = CompilerFactory.getCompiler(codeClass, testClass);
 		compiler.compileAndRunTests();
 	}
-	
+
 	/**
-	 * Constructs a new KataLiveCompiler and checks before that, if the Code can be compiled without severe errors.
-	 * @param inputTest The Test-Class-Code to compile
-	 * @param inputCode The Code-Class-Code to compile
-	 * @param outputArea The TextArea to write errors on
+	 * Constructs a new KataLiveCompiler and checks before that, if the Code can
+	 * be compiled without severe errors.
+	 * 
+	 * @param inputTest
+	 *            The Test-Class-Code to compile
+	 * @param inputCode
+	 *            The Code-Class-Code to compile
+	 * @param outputArea
+	 *            The TextArea to write errors on
 	 * @return A new Compiler if there are no severe errors, else returns null
 	 */
-	public static KataLiveCompiler constructCompiler(String inputTest, String inputCode, TextArea outputArea){
+	public static KataLiveCompiler constructCompiler(String inputTest, String inputCode, TextArea outputArea) {
 		outputArea.setText("");
 		// Check if it can be a valid class
 		if (!inputTest.contains("public class")) {
@@ -50,12 +57,12 @@ public class KataLiveCompiler {
 			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben.");
 		} else if (inputCode.indexOf("{") < 14) {
 			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben.");
-			//Tests missing
-		} else if(inputTest.contains("@Test")){
+			// Tests missing
+		} else if (!inputTest.contains("@Test")) {
 			outputArea.setText("Keine Tests vorhanden.");
 		} else {
 			KataLiveCompiler newCompiler = new KataLiveCompiler(inputCode, inputTest);
-			outputArea.setText(newCompiler.getErrors());
+			outputArea.setText(newCompiler.getErrors() + "\n" + newCompiler.getFailedTestMessages());
 			return newCompiler;
 		}
 		return null;
@@ -78,18 +85,35 @@ public class KataLiveCompiler {
 	}
 
 	/**
-	 * Compiles the two given sources and tests if all tests are not fulfilled.
+	 * Compiles the two given sources and tests if all tests are fulfilled.
 	 * Useful for the RED-Phase.
 	 * 
-	 * @return True if and only if both codes have no compiler errors and some
-	 *         tests are not satisfied.
+	 * @return True if and only if both codes have no compiler errors and
+	 *         exactly one test ist not satisfied.
 	 */
 	public boolean codeCompilesAndDoesNotFulfillTests() {
 		try {
 			return !compiler.getCompilerResult().hasCompileErrors()
-					&& compiler.getTestResult().getNumberOfFailedTests() > 0;
+					&& compiler.getTestResult().getNumberOfFailedTests() == 1;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	public String getFailedTestMessages() {
+		try {
+			String errors = "";
+			TestResult result = compiler.getTestResult();
+			for (TestFailure failure : result.getTestFailures()) {
+				errors += failure.getMessage() + "\n";
+			}
+			//String empty = All tests happy
+			if(errors.equals("")){
+				return "Keine fehlschlagenden Tests!";
+			}
+			return errors;
+		} catch (Exception e) {
+			return "";
 		}
 	}
 
@@ -117,7 +141,7 @@ public class KataLiveCompiler {
 			}
 			return errorString;
 		} else {
-			return "No compile-error detected, good job! :D";
+			return "Code kompiliert einwandfrei, gute Arbeit :D";
 		}
 	}
 
@@ -142,6 +166,14 @@ public class KataLiveCompiler {
 			}
 		}
 		return errorLines;
+	}
+	
+	/**
+	 * Returns the Result of the Compiler
+	 * @return CompilerResult
+	 */
+	public CompilerResult getCompilerResult(){
+		return compiler.getCompilerResult();
 	}
 
 	/**

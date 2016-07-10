@@ -96,6 +96,10 @@ public class MenuController {
 				if (compiler.codeCompilesAndDoesNotFulfillTests()) {
 					phase = Color.GREEN;
 					tddttimer.changeToCodingTimer();
+				}else{
+					//Requirements not met
+					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
+															+ "\nEs muss genau ein Test fehlschlagen");
 				}
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
@@ -105,6 +109,10 @@ public class MenuController {
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.BLACK;
 					tddttimer.changeToRefactorTimer();
+				}else{
+					//Requirements not met
+					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
+															+ "\nAlle Tests müssn erfüllt werden");
 				}
 				// Refactor-Phase
 			} else if (phase.equals(Color.BLACK)) {
@@ -114,6 +122,10 @@ public class MenuController {
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.RED;
 					tddttimer.changeToTestingTimer();
+				}else{
+					//Requirements not met
+					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
+															+ "\nNach dem Refactoren müssen immer noch alle tests erfüllt werden");
 				}
 			}
 			if (babystepsCheckBox.isSelected() && timer != null) { // Babysteps:
