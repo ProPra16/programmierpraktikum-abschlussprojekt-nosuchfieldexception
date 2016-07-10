@@ -23,7 +23,8 @@
       <TextArea fx:id="codeArea" layoutX="425.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />
       
       <Label layoutX="25.0" layoutY="440.0" text="Output" />
-      <TextArea fx:id="outputArea" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" editable="false" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
+      <TextArea fx:id="outputArea" editable="false" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />
+      <Button layoutX="200.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackToRedButton" text="Back to RED" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
       
    </children>
 </AnchorPane>

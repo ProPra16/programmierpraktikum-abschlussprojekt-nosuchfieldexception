@@ -13,9 +13,9 @@ import javafx.scene.paint.Color;
 public class MenuController {
 
 	private KataLiveCompiler compiler;
-	
+
 	/**
-	 * 	Obvious choice, innit?
+	 * Obvious choice, innit?
 	 */
 	private Color phase = Color.RED;
 	private CustomTimer timer;
@@ -47,36 +47,39 @@ public class MenuController {
 
 	}
 
-
 	@FXML
 	public void handleStartButton() {
-		//TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just for progress
-		if(babystepsCheckBox.isSelected()) { //Babysteps!
+		// TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just
+		// for progress
+		if (babystepsCheckBox.isSelected()) { // Babysteps!
 			timer = new CustomTimer(new BabystepsUser() {
-				
+
 				@Override
-				public void notifyCodingTimerElapsed() { //Delete and Go back to testing!
-					codeArea.setText("time elapsed coding"); //Mit was anderem ersetzen
-					//cycle.returnToLastPhase();
+				public void notifyCodingTimerElapsed() { // Delete and Go back
+															// to testing!
+					codeArea.setText("time elapsed coding"); // Mit was anderem
+																// ersetzen
+					// cycle.returnToLastPhase();
 					phase = Color.RED;
 				}
-				
+
 				@Override
-				public void notifiyTestingTimerElapsed() { 
+				public void notifiyTestingTimerElapsed() {
 					testArea.setText("time elapsed testing");
-					//cycle.returnToLastPhase();
+					// cycle.returnToLastPhase();
 					phase = Color.BLACK;
 				}
-			}, (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60), (long) (Double.parseDouble(timeTextField.getText(0,timeTextField.getText().length()-3))*1000*60)); //Missing 2nd field
-			
-			if(phase.equals(Color.RED)) { //For example
-				timer.startTestingTimer();				
-			}
-			else if(phase.equals(Color.GREEN)) {
+			}, (long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000 * 60),
+					(long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000
+							* 60)); // Missing 2nd field
+
+			if (phase.equals(Color.RED)) { // For example
+				timer.startTestingTimer();
+			} else if (phase.equals(Color.GREEN)) {
 				timer.startCodingTimer();
 			}
-		} else { //No Babysteps
-			
+		} else { // No Babysteps
+
 		}
 	}
 
@@ -84,7 +87,7 @@ public class MenuController {
 	public void handleNextStepButton() {
 		if (babystepsCheckBox.isSelected() && timer != null)
 			timer.stopAll();
-		//Check & Compile
+		// Check & Compile
 		compiler = KataLiveCompiler.constructCompiler(testArea.getText(), codeArea.getText(), outputArea);
 		if (compiler != null) {
 			// RED-Phase
@@ -92,20 +95,21 @@ public class MenuController {
 			if (phase.equals(Color.RED)) {
 
 				// Condition to get to the next Phase:
-				// Have compiling code but erroring test(s)
-				if (compiler.codeCompilesAndDoesNotFulfillOneTest()) {
+				// Have non-compiling code
+				if (!compiler.codeCompiles()) {
 					phase = Color.GREEN;
-					//Notify the user
+					// Notify the user
 					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
-															+ "Den fehlschlagenden Test erfüllen :)");
-					//Activate/Deactivate TextAreas
+							+ "Den fehlschlagenden Test erfüllen :)");
+					// Activate/Deactivate TextAreas
 					testArea.setEditable(false);
 					codeArea.setEditable(true);
-					//tddttimer.changeToCodingTimer();
-				}else{
-					//Requirements not met
-					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
-															+ "\nEs muss genau ein Test fehlschlagen");
+					// tddttimer.changeToCodingTimer();
+				} else {
+					// Requirements not met
+					outputArea.setText(outputArea.getText()
+							+ "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
+							+ "\nEs muss genau ein Test fehlschlagen");
 				}
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
@@ -114,17 +118,18 @@ public class MenuController {
 				// Have compiling code and satisfied tests!
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.BLACK;
-					//Notify the user
+					// Notify the user
 					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
-															+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
-					//Activate/Deactivate TextAreas
+							+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
+					// Activate/Deactivate TextAreas
 					testArea.setEditable(false);
 					codeArea.setEditable(true);
-					//tddttimer.changeToRefactorTimer();
-				}else{
-					//Requirements not met
-					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
-															+ "\nAlle Tests müssn erfüllt werden");
+					// tddttimer.changeToRefactorTimer();
+				} else {
+					// Requirements not met
+					outputArea.setText(outputArea.getText()
+							+ "\nCode erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
+							+ "\nAlle Tests müssn erfüllt werden");
 				}
 				// Refactor-Phase
 			} else if (phase.equals(Color.BLACK)) {
@@ -133,17 +138,18 @@ public class MenuController {
 				// Have compiling code and satisfied tests!
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.RED;
-					//Notify the user
-					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
-															+ "Einen fehlschlagenden Test schreiben :)");
-					//Activate/Deactivate TextAreas
+					// Notify the user
+					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der RED-Phase:\n"
+							+ "Einen fehlschlagenden Test schreiben :)");
+					// Activate/Deactivate TextAreas
 					testArea.setEditable(true);
 					codeArea.setEditable(false);
-					//tddttimer.changeToTestingTimer();
-				}else{
-					//Requirements not met
-					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
-															+ "\nNach dem Refactoren müssen immer noch alle tests erfüllt werden");
+					// tddttimer.changeToTestingTimer();
+				} else {
+					// Requirements not met
+					outputArea.setText(
+							outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
+									+ "\nNach dem Refactoren müssen immer noch alle tests erfüllt werden");
 				}
 			}
 			if (babystepsCheckBox.isSelected() && timer != null) { // Babysteps:
@@ -159,5 +165,28 @@ public class MenuController {
 				}
 			}
 		}
+	}
+
+	@FXML
+	/**
+	 * This method (and button) is for the case that the user made a mistake in
+	 * the RED-Phase and wrote not compileable code (which ist a legimitate way
+	 * of enerting the GREEN phase), but the Test-class itself has severe errors
+	 * that cant be fixed in the code-class
+	 */
+	public void handleBackToRedButton() {
+		if (phase == Color.GREEN) {
+			phase = Color.RED;
+			// Notify the user
+			outputArea.setText(outputArea.getText() + "\nBWillkommen zurück in der RED-Phase:\n"
+					+ "Einen fehlschlagenden Test schreiben :)");
+			// Activate/Deactivate TextAreas
+			testArea.setEditable(true);
+			codeArea.setEditable(false);
+			// tddttimer.changeToTestingTimer();
+		} else {
+			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
+		}
+
 	}
 }
