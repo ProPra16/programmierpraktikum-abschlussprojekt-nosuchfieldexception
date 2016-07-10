@@ -93,65 +93,15 @@ public class MenuController {
 			// RED-Phase
 			Color tempPhase = phase;
 			if (phase.equals(Color.RED)) {
-
-				// Condition to get to the next Phase:
-				// Have non-compiling code
-				if (!compiler.codeCompiles()) {
-					phase = Color.GREEN;
-					// Notify the user
-					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
-							+ "Den fehlschlagenden Test erfüllen :)");
-					// Activate/Deactivate TextAreas
-					testArea.setEditable(false);
-					codeArea.setEditable(true);
-					// tddttimer.changeToCodingTimer();
-				} else {
-					// Requirements not met
-					outputArea.setText(outputArea.getText()
-							+ "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
-							+ "\nEs muss genau ein Test fehlschlagen");
-				}
+				switchToGreenPhase();
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
-
-				// Condition to get to the next Phase:
-				// Have compiling code and satisfied tests!
-				if (compiler.codeCompilesAndFulfillsTests()) {
-					phase = Color.BLACK;
-					// Notify the user
-					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
-							+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
-					// Activate/Deactivate TextAreas
-					testArea.setEditable(false);
-					codeArea.setEditable(true);
-					// tddttimer.changeToRefactorTimer();
-				} else {
-					// Requirements not met
-					outputArea.setText(outputArea.getText()
-							+ "\nCode erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
-							+ "\nAlle Tests müssn erfüllt werden");
-				}
-				// Refactor-Phase
+				switchToRefactorPhase();
+				// REFACTOR-Phase
 			} else if (phase.equals(Color.BLACK)) {
-
-				// Condition to get to the next Phase:
-				// Have compiling code and satisfied tests!
-				if (compiler.codeCompilesAndFulfillsTests()) {
-					phase = Color.RED;
-					// Notify the user
-					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der RED-Phase:\n"
-							+ "Einen fehlschlagenden Test schreiben :)");
-					// Activate/Deactivate TextAreas
-					testArea.setEditable(true);
-					codeArea.setEditable(false);
-					// tddttimer.changeToTestingTimer();
-				} else {
-					// Requirements not met
-					outputArea.setText(
-							outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
-									+ "\nNach dem Refactoren müssen immer noch alle tests erfüllt werden");
-				}
+				switchToRedPhase();
 			}
+			
 			if (babystepsCheckBox.isSelected() && timer != null) { // Babysteps:
 																	// now
 																	// next
@@ -166,6 +116,76 @@ public class MenuController {
 			}
 		}
 	}
+	
+	/**
+	 * This code is executed when the user tries to switch to the GREEN-Phase
+	 */
+	private void switchToGreenPhase(){
+		// Condition to get to the next Phase:
+		// Have non-compiling code
+		if (!compiler.codeCompiles()) {
+			phase = Color.GREEN;
+			// Notify the user
+			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
+					+ "Den fehlschlagenden Test erfüllen :)");
+			// Activate/Deactivate TextAreas
+			testArea.setEditable(false);
+			codeArea.setEditable(true);
+			// tddttimer.changeToCodingTimer();
+		} else {
+			// Requirements not met
+			outputArea.setText(outputArea.getText()
+					+ "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
+					+ "\nEs muss genau ein Test fehlschlagen");
+		}
+	}
+	
+	/**
+	 * This code is executed when the user tries to switch to the REFACTOR-Phase
+	 */
+	private void switchToRefactorPhase(){
+		// Condition to get to the next Phase:
+		// Have compiling code and satisfied tests!
+		if (compiler.codeCompilesAndFulfillsTests()) {
+			phase = Color.BLACK;
+			// Notify the user
+			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
+					+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
+			// Activate/Deactivate TextAreas
+			testArea.setEditable(false);
+			codeArea.setEditable(true);
+			// tddttimer.changeToRefactorTimer();
+		} else {
+			// Requirements not met
+			outputArea.setText(outputArea.getText()
+					+ "\nCode erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
+					+ "\nAlle Tests müssn erfüllt werden");
+		}
+	}
+	
+	/**
+	 * This code is executed when the user tries to switch to the RED-Phase
+	 */
+	private void switchToRedPhase(){
+		// Condition to get to the next Phase:
+		// Have compiling code and satisfied tests!
+		if (compiler.codeCompilesAndFulfillsTests()) {
+			phase = Color.RED;
+			// Notify the user
+			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der RED-Phase:\n"
+					+ "Einen fehlschlagenden Test schreiben :)");
+			// Activate/Deactivate TextAreas
+			testArea.setEditable(true);
+			codeArea.setEditable(false);
+			// tddttimer.changeToTestingTimer();
+		} else {
+			// Requirements not met
+			outputArea.setText(
+					outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
+							+ "\nNach dem Refactoren müssen immer noch alle Tests erfüllt werden");
+		}
+	}
+	
 
 	@FXML
 	/**
@@ -187,6 +207,5 @@ public class MenuController {
 		} else {
 			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
 		}
-
 	}
 }
