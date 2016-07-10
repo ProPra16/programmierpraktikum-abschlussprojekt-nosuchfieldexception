@@ -4,10 +4,28 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import vk.core.api.TestResult;
 
 
 public class KataLiveCompilerTest {
+	
+	@Test public void correctCodeHasNoErrors(){
+		KataLiveCompiler compiler = new KataLiveCompiler(
+				"public class TwentyFour { \n"
+						+ " public static int twentyFour() { \n"
+						+ "    return 24; \n"
+						+ " }\n"
+						+ "}",
+					"import static org.junit.Assert.*;\n"
+						+ "import org.junit.Test;\n"
+						+ "public class TwentyFourTest { \n"
+						+ "   @Test\n"
+						+ "   public void isItReallyTwentyFour() { \n "
+						+ "       assertEquals(4, TwentyFour.twentyFour()); \n"
+						+ "   }\n "
+						+ "}");
+		boolean correct = compiler.codeCompiles();
+		assertTrue("code compiles and the method should return 'true'", correct);
+	}
 
 	@Test public void compilesAndTestsCorrectClassesAndCorrectTests(){
 		KataLiveCompiler compiler = new KataLiveCompiler(

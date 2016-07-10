@@ -67,6 +67,19 @@ public class KataLiveCompiler {
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * Checks if the compiled code contains errors
+	 * @return True if there are non compile-errors.
+	 */
+	public boolean codeCompiles(){
+		try {
+			return !compiler.getCompilerResult().hasCompileErrors();
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	/**
 	 * Compiles the two given sources and tests if all tests are fulfilled.
@@ -77,7 +90,7 @@ public class KataLiveCompiler {
 	 */
 	public boolean codeCompilesAndFulfillsTests() {
 		try {
-			return !compiler.getCompilerResult().hasCompileErrors()
+			return codeCompiles()
 					&& compiler.getTestResult().getNumberOfFailedTests() == 0;
 		} catch (Exception e) {
 			return false;
@@ -93,13 +106,13 @@ public class KataLiveCompiler {
 	 */
 	public boolean codeCompilesAndDoesNotFulfillOneTest() {
 		try {
-			return !compiler.getCompilerResult().hasCompileErrors()
+			return codeCompiles()
 					&& compiler.getTestResult().getNumberOfFailedTests() == 1;
 		} catch (Exception e) {
 			return false;
 		}
 	}
-
+	
 	/**
 	 * Builds a String composed of all Test-Errors and returns them with a new
 	 * line at the end of each error.
