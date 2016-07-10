@@ -43,7 +43,7 @@ public class KataLiveCompilerTest {
 						+ "       assertEquals(24, TwentyFour.twentyFour()); \n"
 						+ "   }\n "
 						+ "}");
-		boolean wrong = compiler.codeCompilesAndDoesNotFulfillTests();
+		boolean wrong = compiler.codeCompilesAndDoesNotFulfillOneTest();
 		assertTrue("correct class and wrong tests should return 'false'", wrong);
 	}
 	
@@ -131,6 +131,29 @@ public class KataLiveCompilerTest {
 		assertEquals(1, result.getNumberOfSuccessfulTests());
 		assertEquals(1, result.getNumberOfFailedTests());
 		assertEquals(0, result.getNumberOfIgnoredTests());
+	}
+	
+	@Test public void compilerHasOnlyOneFailingTest(){
+		KataLiveCompiler compiler = new KataLiveCompiler(
+				"public class TwentyFour { \n"
+						+ " public static int twentyFour() { \n"
+						+ "    return 24; \n"
+						+ " }\n"
+						+ "}",
+					"import static org.junit.Assert.*;\n"
+						+ "import org.junit.Test;\n"
+						+ "public class TwentyFourTest { \n"
+						+ "   @Test \n"
+						+ "   public void fail() { \n "
+						+ "       fail(); \n"
+						+ "   }\n "
+						+ "   @Test \n"
+						+ "   public void isItReallyTwentyFour() { \n "
+						+ "       assertEquals(24, TwentyFour.twentyFour()); \n"
+						+ "   }\n "
+						+ "}");
+		boolean oneWrong = compiler.codeCompilesAndDoesNotFulfillOneTest();
+		assertTrue("One test is correct the other one always fails, the method should return 'true'", oneWrong);
 	}
 	
 	

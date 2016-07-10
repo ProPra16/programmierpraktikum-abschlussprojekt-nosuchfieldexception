@@ -91,10 +91,10 @@ public class KataLiveCompiler {
 	 * @return True if and only if both codes have no compiler errors and
 	 *         exactly one test ist not satisfied.
 	 */
-	public boolean codeCompilesAndDoesNotFulfillTests() {
+	public boolean codeCompilesAndDoesNotFulfillOneTest() {
 		try {
 			return !compiler.getCompilerResult().hasCompileErrors()
-					&& compiler.getTestResult().getNumberOfFailedTests() != 0;
+					&& compiler.getTestResult().getNumberOfFailedTests() == 1;
 		} catch (Exception e) {
 			return false;
 		}

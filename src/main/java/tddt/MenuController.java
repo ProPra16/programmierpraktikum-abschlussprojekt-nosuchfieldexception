@@ -93,7 +93,7 @@ public class MenuController {
 
 				// Condition to get to the next Phase:
 				// Have compiling code but erroring test(s)
-				if (compiler.codeCompilesAndDoesNotFulfillTests()) {
+				if (compiler.codeCompilesAndDoesNotFulfillOneTest()) {
 					phase = Color.GREEN;
 					tddttimer.changeToCodingTimer();
 				}else{
