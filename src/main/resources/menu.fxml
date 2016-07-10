@@ -31,29 +31,30 @@
                   <Image url="@Logo.PNG" />
                </image>
             </ImageView>
-            <Label layoutX="284.0" layoutY="117.0" prefHeight="35.0" prefWidth="75.0" text=" Timer" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="117.0">
+            <Label layoutX="284.0" layoutY="86.0" prefHeight="35.0" prefWidth="75.0" text=" Timer" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="86.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="timeOut" layoutX="259.0" layoutY="152.0" prefHeight="53.0" prefWidth="125.0" text="0000" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="152.0">
+            <Label fx:id="timeOut" layoutX="259.0" layoutY="121.0" prefHeight="53.0" prefWidth="125.0" text="0000" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="121.0">
                <font>
                   <Font name="OCR A Extended" size="50.0" />
                </font>
             </Label>
-            <Label layoutX="248.0" layoutY="223.0" prefHeight="35.0" prefWidth="147.0" text="Zeit eingeben" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="223.0">
+            <Label layoutX="248.0" layoutY="192.0" prefHeight="35.0" prefWidth="147.0" text="Zeit eingeben" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="192.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="TimeIn" layoutX="248.0" layoutY="265.0" prefHeight="25.0" prefWidth="147.0" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="265.0" />
-            <Button fx:id="start" layoutX="248.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Start" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="296.0" />
+            <TextField fx:id="TimeIn" layoutX="248.0" layoutY="234.0" prefHeight="25.0" prefWidth="147.0" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="234.0" />
+            <Button fx:id="start" layoutX="248.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Start" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="265.0" />
             <TextArea layoutX="38.0" layoutY="392.0" prefHeight="643.0" prefWidth="350.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="392.0" />
             <Label layoutX="38.0" layoutY="357.0" text="Aufgabe" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="298.0" AnchorPane.topAnchor="357.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
+            <Button fx:id="back" layoutX="248.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Zurück" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="296.0" />
       </children>
     </AnchorPane>
   </children>
