@@ -1,6 +1,7 @@
 package tddt;
 
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 
@@ -105,7 +106,7 @@ public class KataLiveCompilerTest {
 		assertTrue("The name of the class is " + className +", should be 'TwentyFour'", className.equals("TwentyFour"));
 	}
 	
-	@Test public void compilerReturnsFailedTestMessageName(){
+	@Test public void compilerDetectsFailingTests(){
 		KataLiveCompiler compiler = new KataLiveCompiler(
 				"public class TwentyFour { \n"
 						+ " public static int twentyFour() { \n"
@@ -117,15 +118,11 @@ public class KataLiveCompilerTest {
 						+ "public class TwentyFourTest { \n"
 						+ "   @Test\n"
 						+ "   public void isItReallyTwentyFour() { \n "
-						+ "       assertEquals(24, TwentyFour.twentyFour()); \n"
+						+ "       fail(); \n"
 						+ "   }\n "
 						+ "}");
-		String className = compiler.getClassName("public class TwentyFour { \n"
-				+ " public static int twentyFour() { \n"
-				+ "    return 24; \n"
-				+ " }\n"
-				+ "}");
-		assertTrue("The name of the class is " + className +", should be 'TwentyFour'", className.equals("TwentyFour"));
+		boolean result = compiler.codeCompilesAndDoesNotFulfillTests();
+		assertTrue("The test fails, therefore the Method should return 'true'", result);
 	}
 	
 	

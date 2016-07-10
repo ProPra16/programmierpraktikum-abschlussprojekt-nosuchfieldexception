@@ -94,7 +94,7 @@ public class KataLiveCompiler {
 	public boolean codeCompilesAndDoesNotFulfillTests() {
 		try {
 			return !compiler.getCompilerResult().hasCompileErrors()
-					&& compiler.getTestResult().getNumberOfFailedTests() == 1;
+					&& compiler.getTestResult().getNumberOfFailedTests() != 0;
 		} catch (Exception e) {
 			return false;
 		}
@@ -169,11 +169,19 @@ public class KataLiveCompiler {
 	}
 	
 	/**
-	 * Returns the Result of the Compiler
-	 * @return CompilerResult
+	 * Returns a Collection of Errors
+	 * @return Errors of the test class
 	 */
-	public CompilerResult getCompilerResult(){
-		return compiler.getCompilerResult();
+	public Collection<CompileError> getTestClassErrors(){
+		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(testClass);
+	}
+	
+	/**
+	 * Returns a Collection of Errors
+	 * @return Errors of the code class
+	 */
+	public Collection<CompileError> getCodeClassErrors(){
+		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(codeClass);
 	}
 
 	/**
