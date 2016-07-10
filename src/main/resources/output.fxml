@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="35.0" layoutY="14.0" text="Ergebnis: ">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="out" layoutX="35.0" layoutY="84.0" prefHeight="313.0" prefWidth="730.0" />
+      <TextField layoutX="35.0" layoutY="438.0" prefHeight="25.0" prefWidth="730.0" />
+      <Label layoutX="35.0" layoutY="411.0" text="Bewertung">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
