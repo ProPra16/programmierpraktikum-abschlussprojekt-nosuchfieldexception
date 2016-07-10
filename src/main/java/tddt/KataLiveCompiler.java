@@ -60,6 +60,9 @@ public class KataLiveCompiler {
 			// Tests missing
 		} else if (!inputTest.contains("@Test")) {
 			outputArea.setText("Keine Tests vorhanden.");
+			//Duplicate class names
+		}else if(getClassName(inputTest).equals(getClassName(inputCode))){
+			outputArea.setText("Die Klassen müssen unterschiedliche Namen haben!");
 		} else {
 			KataLiveCompiler newCompiler = new KataLiveCompiler(inputCode, inputTest);
 			outputArea.setText(newCompiler.getErrors() + "\n" + newCompiler.getFailedTestMessages());
@@ -195,7 +198,7 @@ public class KataLiveCompiler {
 	 *            The sourcecode of the class to find a name for
 	 * @return The name of the Class.
 	 */
-	public String getClassName(String classCode) {
+	public static String getClassName(String classCode) {
 		String className = "";
 		// Locate Classname
 		int indexBeginName = classCode.indexOf("class") + 5;

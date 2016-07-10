@@ -137,6 +137,8 @@ public class MenuController {
 			testArea.setEditable(false);
 			codeArea.setEditable(true);
 			backToRedButton.setDisable(false);
+			//Save the code class code
+			oldCodeClass = codeArea.getText();
 			// tddttimer.changeToCodingTimer();
 		} else {
 			// Requirements not met
@@ -212,6 +214,8 @@ public class MenuController {
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
 			backToRedButton.setDisable(true);
+			//Reset code class code
+			codeArea.setText(oldCodeClass);
 			// tddttimer.changeToTestingTimer();
 		} else {
 			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
