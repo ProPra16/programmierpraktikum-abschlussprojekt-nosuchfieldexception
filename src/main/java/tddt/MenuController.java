@@ -95,6 +95,12 @@ public class MenuController {
 				// Have compiling code but erroring test(s)
 				if (compiler.codeCompilesAndDoesNotFulfillOneTest()) {
 					phase = Color.GREEN;
+					//Notify the user
+					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
+															+ "Den fehlschlagenden Test erfüllen :)");
+					//Activate/Deactivate TextAreas
+					testArea.setEditable(false);
+					codeArea.setEditable(true);
 					//tddttimer.changeToCodingTimer();
 				}else{
 					//Requirements not met
@@ -108,6 +114,12 @@ public class MenuController {
 				// Have compiling code and satisfied tests!
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.BLACK;
+					//Notify the user
+					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
+															+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
+					//Activate/Deactivate TextAreas
+					testArea.setEditable(true);
+					codeArea.setEditable(true);
 					//tddttimer.changeToRefactorTimer();
 				}else{
 					//Requirements not met
@@ -121,6 +133,12 @@ public class MenuController {
 				// Have compiling code and satisfied tests!
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.RED;
+					//Notify the user
+					outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
+															+ "Einen fehlschlagenden Test schreiben :)");
+					//Activate/Deactivate TextAreas
+					testArea.setEditable(true);
+					codeArea.setEditable(false);
 					//tddttimer.changeToTestingTimer();
 				}else{
 					//Requirements not met
