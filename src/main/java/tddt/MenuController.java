@@ -95,7 +95,7 @@ public class MenuController {
 				// Have compiling code but erroring test(s)
 				if (compiler.codeCompilesAndDoesNotFulfillOneTest()) {
 					phase = Color.GREEN;
-					tddttimer.changeToCodingTimer();
+					//tddttimer.changeToCodingTimer();
 				}else{
 					//Requirements not met
 					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
@@ -108,7 +108,7 @@ public class MenuController {
 				// Have compiling code and satisfied tests!
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.BLACK;
-					tddttimer.changeToRefactorTimer();
+					//tddttimer.changeToRefactorTimer();
 				}else{
 					//Requirements not met
 					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
@@ -121,7 +121,7 @@ public class MenuController {
 				// Have compiling code and satisfied tests!
 				if (compiler.codeCompilesAndFulfillsTests()) {
 					phase = Color.RED;
-					tddttimer.changeToTestingTimer();
+					//tddttimer.changeToTestingTimer();
 				}else{
 					//Requirements not met
 					outputArea.setText(outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"

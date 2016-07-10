@@ -108,31 +108,6 @@ public class KataLiveCompilerTest {
 		assertTrue("The name of the class is " + className +", should be 'TwentyFour'", className.equals("TwentyFour"));
 	}
 	
-	@Test public void compilerDetectsFailingTests(){
-		KataLiveCompiler compiler = new KataLiveCompiler(
-				"public class TwentyFour { \n"
-						+ " public static int twentyFour() { \n"
-						+ "    return 24; \n"
-						+ " }\n"
-						+ "}",
-					"import static org.junit.Assert.*;\n"
-						+ "import org.junit.Test;\n"
-						+ "public class TwentyFourTest { \n"
-						+ "   @Test \n"
-						+ "   public void fail() { \n "
-						+ "       fail(); \n"
-						+ "   }\n "
-						+ "   @Test \n"
-						+ "   public void isItReallyTwentyFour() { \n "
-						+ "       assertEquals(24, TwentyFour.twentyFour()); \n"
-						+ "   }\n "
-						+ "}");
-		TestResult result = compiler.getTestResult();
-		assertEquals(1, result.getNumberOfSuccessfulTests());
-		assertEquals(1, result.getNumberOfFailedTests());
-		assertEquals(0, result.getNumberOfIgnoredTests());
-	}
-	
 	@Test public void compilerHasOnlyOneFailingTest(){
 		KataLiveCompiler compiler = new KataLiveCompiler(
 				"public class TwentyFour { \n"

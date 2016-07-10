@@ -207,12 +207,4 @@ public class KataLiveCompiler {
 	public Collection<CompileError> getCodeClassErrors(){
 		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(codeClass);
 	}
-	
-	/**
-	 * Returns the TestResult of this comilation unit
-	 * @return The testResult of this compiler
-	 */
-	public TestResult getTestResult(){
-		return compiler.getTestResult();
-	}
 }
