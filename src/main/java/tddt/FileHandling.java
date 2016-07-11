@@ -37,14 +37,14 @@ public class FileHandling {
 	
 	
 	
-	public static String[] separateString(){
+	public String[] separateString(){
 		
 		String line="";
-		String file = "";
+		String full = "";
 		
 	    try(BufferedReader b = new BufferedReader (new FileReader(file))) {
 	      while( (line = b.readLine()) != null ) {
-	    	  file+= line + "\n";
+	    	  full+= line + "\n";
 	      }
 	      b.close();
 	      //System.out.println(file);
@@ -53,7 +53,7 @@ public class FileHandling {
 	      System.out.println("Fehler: "+e.toString());
 	    }
 	    
-		String[] sep = file.split("-----");
+		String[] sep = full.split("-----");
 		//System.out.println(sep[0]);
 		//System.out.println(sep[1]);
 		//System.out.println(sep[2]);
