@@ -48,7 +48,7 @@ public class MenuController {
 
 	@FXML
 	public void handleLoadButton() {
-		FileHandling fileHandling = new FileHandling(new Stage());
+		FileHandling fileHandling = new FileHandling();
 		codeArea.setText(fileHandling.readClass());
 		testArea.setText(fileHandling.readTest());
 		taskArea.setText(fileHandling.readTask());
