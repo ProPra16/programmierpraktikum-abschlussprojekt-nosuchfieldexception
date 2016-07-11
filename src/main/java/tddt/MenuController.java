@@ -127,8 +127,8 @@ public class MenuController {
 	 */
 	private void switchToGreenPhase(){
 		// Condition to get to the next Phase:
-		// Have non-compiling code
-		if (!compiler.codeCompiles()) {
+		// Have non-compiling code or one failing test
+		if (!compiler.codeCompiles() || compiler.codeCompilesAndDoesNotFulfillOneTest()) {
 			phase = Color.GREEN;
 			// Notify the user
 			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
