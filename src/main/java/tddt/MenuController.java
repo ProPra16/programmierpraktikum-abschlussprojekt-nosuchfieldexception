@@ -10,6 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class MenuController {
 
@@ -30,6 +31,9 @@ public class MenuController {
 
 	@FXML
 	private TextArea outputArea;
+	
+	@FXML
+	private TextArea taskArea;
 
 	@FXML
 	private CheckBox babystepsCheckBox;
@@ -44,7 +48,10 @@ public class MenuController {
 
 	@FXML
 	public void handleLoadButton() {
-
+		FileHandling fileHandling = new FileHandling(new Stage());
+		codeArea.setText(fileHandling.readClass());
+		testArea.setText(fileHandling.readTest());
+		taskArea.setText(fileHandling.readTask());
 	}
 
 	@FXML
