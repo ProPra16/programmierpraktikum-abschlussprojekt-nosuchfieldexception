@@ -4,12 +4,15 @@ import babysteps.BabystepsCycle;
 import babysteps.BabystepsUser;
 import babysteps.CustomTimer;
 import babysteps.TDDCycle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class MenuController {
 
@@ -57,6 +60,7 @@ public class MenuController {
 		// TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just
 		// for progress
 		if (babystepsCheckBox.isSelected()) { // Babysteps!
+			long time = (long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000 * 60);
 			timer = new CustomTimer(new BabystepsUser() {
 
 				@Override
@@ -74,15 +78,18 @@ public class MenuController {
 					// cycle.returnToLastPhase();
 					phase = Color.BLACK;
 				}
-			}, (long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000 * 60),
-					(long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000
-							* 60)); // Missing 2nd field
+			}, time, time); // Missing 2nd field
 
 			if (phase.equals(Color.RED)) { // For example
 				timer.startTestingTimer();
 			} else if (phase.equals(Color.GREEN)) {
 				timer.startCodingTimer();
 			}
+			Timeline refreshTimer = new Timeline(new KeyFrame(
+			        Duration.millis(10),
+			        ae -> outputArea.setText(babysteps.Utils.millisecondsToTimerString(timer.getRemaingTestingTime()))));
+			refreshTimer.setCycleCount(Timeline.INDEFINITE);
+			refreshTimer.play();
 		} else { // No Babysteps
 
 		}
