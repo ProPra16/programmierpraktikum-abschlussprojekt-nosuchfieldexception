@@ -56,7 +56,7 @@ public class MenuController {
 
 	@FXML
 	public void handleSaveButton() {
-
+		FileHandling.saveFile(codeArea.getText(), testArea.getText(), taskArea.getText());
 	}
 
 	@FXML
