@@ -33,9 +33,9 @@ public class MenuController {
 
 	@FXML
 	private TextArea outputArea;
-
+	
 	@FXML
-	private CheckBox babystepsCheckBox;
+	private TextArea taskArea;
 
 	@FXML
 	private TextField timeTextField;
@@ -47,19 +47,22 @@ public class MenuController {
 
 	@FXML
 	public void handleLoadButton() {
-
+		FileHandling fileHandling = new FileHandling();
+		codeArea.setText(fileHandling.readClass());
+		testArea.setText(fileHandling.readTest());
+		taskArea.setText(fileHandling.readTask());
 	}
 
 	@FXML
 	public void handleSaveButton() {
-
+		FileHandling.saveFile(codeArea.getText(), testArea.getText(), taskArea.getText());
 	}
 
 	@FXML
 	public void handleStartButton() {
 		// TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just
 		// for progress
-		if (babystepsCheckBox.isSelected()) { // Babysteps!
+		/*if (babystepsCheckBox.isSelected()) { // Babysteps!
 			long time = (long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000 * 60);
 			timer = new CustomTimer(new BabystepsUser() {
 
@@ -90,15 +93,15 @@ public class MenuController {
 			        ae -> outputArea.setText(babysteps.Utils.millisecondsToTimerString(timer.getRemaingTestingTime()))));
 			refreshTimer.setCycleCount(Timeline.INDEFINITE);
 			refreshTimer.play();
-		} else { // No Babysteps
+		//} else { // No Babysteps
 
-		}
+		//}*/
 	}
 
 	@FXML
 	public void handleNextStepButton() {
-		if (babystepsCheckBox.isSelected() && timer != null)
-			timer.stopAll();
+		//if (babystepsCheckBox.isSelected() && timer != null)
+		//timer.stopAll();
 		// Check & Compile
 		compiler = KataLiveCompiler.constructCompiler(testArea.getText(), codeArea.getText(), outputArea);
 		if (compiler != null) {
@@ -114,7 +117,7 @@ public class MenuController {
 				switchToRedPhase();
 			}
 			
-			if (babystepsCheckBox.isSelected() && timer != null) { // Babysteps:
+			//if (babystepsCheckBox.isSelected() && timer != null) { // Babysteps:
 																	// now
 																	// next
 																	// timer
@@ -124,7 +127,7 @@ public class MenuController {
 					} else if (phase.equals(Color.GREEN)) {
 						timer.startCodingTimer();
 					}
-				}
+				//}
 			}
 		}
 	}
