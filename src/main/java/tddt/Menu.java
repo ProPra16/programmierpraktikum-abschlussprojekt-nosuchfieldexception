@@ -22,6 +22,7 @@ public class Menu extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("TDDT");
 	    primaryStage.centerOnScreen();
+	    primaryStage.setMaximized(true);
 		primaryStage.show();
 
 	}
@@ -31,3 +32,4 @@ public class Menu extends Application {
 	}
 
 }
+
