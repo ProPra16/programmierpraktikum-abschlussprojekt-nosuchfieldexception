@@ -1,5 +1,8 @@
 package tddt;
 
+import java.util.Collection;
+import java.util.HashMap;
+
 import babysteps.BabystepsCycle;
 import babysteps.BabystepsUser;
 import babysteps.CustomTimer;
@@ -9,6 +12,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import vk.core.api.CompileError;
+import vk.core.api.CompilerResult;
 
 public class MenuController {
 
@@ -36,6 +41,7 @@ public class MenuController {
 	private TextField timeTextField;
 
 	private TDDTTimer tddttimer = new TDDTTimer();
+	private HashMap<String, Integer> compileErrors = new HashMap<>();;
 
 	@FXML
 	public void handleLoadButton() {
@@ -153,9 +159,36 @@ public class MenuController {
 		} else {
 			KataLiveCompiler compiler = new KataLiveCompiler(codeArea.getText(), testArea.getText());
 			outputArea.setText(compiler.getErrors());
+			analyzeCompileErrors(compiler);
 			return true;
 		}
 		return false;
+	}
+
+	private void analyzeCompileErrors(KataLiveCompiler compiler) {
+		Collection<CompileError> testErrors = compiler.getTestErrors();
+		Collection<CompileError> codeErrors = compiler.getCodeErrors();
+		if (!testErrors.equals(null)){
+			for (CompileError error : testErrors){
+				String errorName = getErrorName(error);
+			}
+		}
+	}
+
+	private String getErrorName(CompileError error) {
+		if (error.getMessage().equals("reached end of file while parsing")){
+			return "reached end of file while parsing";
+		}
+		if (error.getMessage().equals("missing return statement")){
+			return "missing return statement";
+		}
+		if (error.getMessage().contains("non-static method")){
+			return "non-static methods cannot be referenced from a static context";
+		}
+		if (error.getMessage().equals("';' expected")){
+			return "';' is missing";
+		}
+		return null;
 	}
 
 }

@@ -9,6 +9,7 @@ public class TDDTTimer {
 	private TDDTTimerTask test, code, refactor;
 	
 	public TDDTTimer() {
+		timer = new Timer();
 		test = new TDDTTimerTask();
 		code = new TDDTTimerTask();
 		refactor = new TDDTTimerTask();
