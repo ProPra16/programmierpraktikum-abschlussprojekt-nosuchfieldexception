@@ -42,15 +42,30 @@ public class MenuController {
 	
 	@FXML
 	private Button backToRedButton;
+	
+	@FXML
+	private Button saveButton;
+	
+	@FXML
+	private Button startButton;
+	
+	@FXML
+	private Button nextStepButton;
 
 	private TDDTTimer tddttimer;
 
 	@FXML
 	public void handleLoadButton() {
+		//Handle file
 		FileHandling fileHandling = new FileHandling();
 		codeArea.setText(fileHandling.readClass());
 		testArea.setText(fileHandling.readTest());
 		taskArea.setText(fileHandling.readTask());
+		//Activate Buttons/TextAreas
+		saveButton.setDisable(false);
+		startButton.setDisable(false);
+		nextStepButton.setDisable(false);
+		testArea.setEditable(true);
 	}
 
 	@FXML
