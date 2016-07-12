@@ -71,6 +71,9 @@ public class MenuController {
 		startButton.setDisable(false);
 		nextStepButton.setDisable(false);
 		testArea.setEditable(true);
+		
+		latestTestString = testArea.getText();
+		latestCodeString = codeArea.getText();
 	}
 
 	@FXML
@@ -88,7 +91,20 @@ public class MenuController {
 			@Override
 			public void notifyTimerElapsed() { 
 				refreshTimer.stop();
-				outputArea.appendText("Babysteps Timer has elapsed! Resetting changes...");
+				timeOutLabel.setText("00:00");
+				outputArea.appendText("Babysteps Timer has elapsed! Resetting changes...\n");
+				if (phase.equals(Color.RED)) {
+					testArea.setText(latestTestString);
+					switchToRefactorPhaseWithoutCompiling();
+					// GREEN-PHASE
+				} else if (phase.equals(Color.GREEN)) {
+					codeArea.setText(latestCodeString);
+					switchToRedPhaseWithoutCompiling();
+					// REFACTOR-Phase
+				} else if (phase.equals(Color.BLACK)) {
+					//Hm nö
+					outputArea.appendText("\nMagikarp used SPLASH!\n But nothing happenend!\n");
+				}
 			}
 			
 		}, time, time); // Missing 2nd field
@@ -104,19 +120,26 @@ public class MenuController {
 
 	@FXML
 	public void handleNextStepButton() {
-		if(babystepsEnabled) timer.stopTimer();
 		// Check & Compile
 		compiler = KataLiveCompiler.constructCompiler(testArea.getText(), codeArea.getText(), outputArea);
 		if (compiler != null) {
 				// RED-Phase
 			if (phase.equals(Color.RED)) {
 				switchToGreenPhase();
+				if(babystepsEnabled && phase.equals(Color.GREEN)) {
+					timer.stopTimer();
+					timer.startTimer();
+				}
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
 				switchToRefactorPhase();
 				// REFACTOR-Phase
 			} else if (phase.equals(Color.BLACK)) {
 				switchToRedPhase();
+				if(babystepsEnabled && phase.equals(Color.BLACK)) {
+					timer.stopTimer();
+					timer.startTimer();
+				}
 			}
 		}
 	}
@@ -148,6 +171,18 @@ public class MenuController {
 		}
 	}
 	
+	private void switchToGreenPhaseWithoutCompiling(){
+		phase = Color.GREEN;
+		// Notify the user
+		outputArea.appendText("Willkommen in der GREEN-Phase:\n"
+				+ "Den fehlschlagenden Test erfüllen :)");
+		// Activate/Deactivate TextAreas/Buttons
+		testArea.setEditable(false);
+		codeArea.setEditable(true);
+		backToRedButton.setDisable(false);
+		latestTestString = testArea.getText();
+	}
+	
 	/**
 	 * This code is executed when the user tries to switch to the REFACTOR-Phase
 	 */
@@ -174,6 +209,18 @@ public class MenuController {
 		}
 	}
 	
+	private void switchToRefactorPhaseWithoutCompiling(){
+		phase = Color.BLACK;
+		outputArea.appendText("Willkommen in der REFACTOR-Phase:\n"
+				+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
+		// Activate/Deactivate TextAreas/Buttons
+		testArea.setEditable(false);
+		codeArea.setEditable(true);
+		backToRedButton.setDisable(true);
+		
+		latestCodeString = codeArea.getText();
+	}
+	
 	/**
 	 * This code is executed when the user tries to switch to the RED-Phase
 	 */
@@ -197,6 +244,14 @@ public class MenuController {
 					outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
 							+ "\nNach dem Refactoren müssen immer noch alle Tests erfüllt werden");
 		}
+	}
+	
+	private void switchToRedPhaseWithoutCompiling(){
+		phase = Color.RED;
+		outputArea.appendText("Willkommen in der RED-Phase:\n");
+		testArea.setEditable(true);
+		codeArea.setEditable(false);
+		backToRedButton.setDisable(true);
 	}
 	
 
