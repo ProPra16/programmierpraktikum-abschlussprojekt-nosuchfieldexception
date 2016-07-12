@@ -3,11 +3,14 @@ package tddt;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javafx.scene.control.TextArea;
 import vk.core.api.CompilationUnit;
 import vk.core.api.CompileError;
 import vk.core.api.CompilerFactory;
 import vk.core.api.CompilerResult;
 import vk.core.api.JavaStringCompiler;
+import vk.core.api.TestFailure;
+import vk.core.api.TestResult;
 
 public class KataLiveCompiler {
 
@@ -25,9 +28,60 @@ public class KataLiveCompiler {
 	 */
 	public KataLiveCompiler(String codeClassSourcecode, String testClassSourcecode) {
 		codeClass = new CompilationUnit(this.getClassName(codeClassSourcecode), codeClassSourcecode, false);
-		testClass = new CompilationUnit(this.getClassName(testClassSourcecode), testClassSourcecode, false);
+		testClass = new CompilationUnit(this.getClassName(testClassSourcecode), testClassSourcecode, true);
 		compiler = CompilerFactory.getCompiler(codeClass, testClass);
 		compiler.compileAndRunTests();
+	}
+
+	/**
+	 * Constructs a new KataLiveCompiler and checks before that, if the Code can
+	 * be compiled without severe errors.
+	 * 
+	 * @param inputTest
+	 *            The Test-Class-Code to compile
+	 * @param inputCode
+	 *            The Code-Class-Code to compile
+	 * @param outputArea
+	 *            The TextArea to write errors on
+	 * @return A new Compiler if there are no severe errors, else returns null
+	 */
+	public static KataLiveCompiler constructCompiler(String inputTest, String inputCode, TextArea outputArea) {
+		outputArea.setText("");
+		// Check if it can be a valid class
+		if (!inputTest.contains("public class")) {
+			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'.");
+		} else if (!inputCode.contains("public class")) {
+			outputArea.setText("Die Code-Klasse enthält noch kein 'public class'.");
+			// Class name missing
+		} else if (inputTest.indexOf("{") < 14) {
+			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben.");
+		} else if (inputCode.indexOf("{") < 14) {
+			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben.");
+			// Tests missing
+		} else if (!inputTest.contains("@Test")) {
+			outputArea.setText("Keine Tests vorhanden.");
+			//Duplicate class names
+		}else if(getClassName(inputTest).equals(getClassName(inputCode))){
+			outputArea.setText("Die Klassen müssen unterschiedliche Namen haben!");
+		} else {
+			KataLiveCompiler newCompiler = new KataLiveCompiler(inputCode, inputTest);
+			outputArea.setText(newCompiler.getErrors() + "\n" + newCompiler.getFailedTestMessages());
+			return newCompiler;
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * Checks if the compiled code contains errors
+	 * @return True if there are non compile-errors.
+	 */
+	public boolean codeCompiles(){
+		try {
+			return !compiler.getCompilerResult().hasCompileErrors();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
@@ -38,20 +92,52 @@ public class KataLiveCompiler {
 	 *         tests are satisfied.
 	 */
 	public boolean codeCompilesAndFulfillsTests() {
-		return !compiler.getCompilerResult().hasCompileErrors()
-				&& compiler.getTestResult().getNumberOfFailedTests() == 0;
+		try {
+			return codeCompiles()
+					&& compiler.getTestResult().getNumberOfFailedTests() == 0;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
-	 * Compiles the two given sources and tests if all tests are not fulfilled.
+	 * Compiles the two given sources and tests if all tests are fulfilled.
 	 * Useful for the RED-Phase.
 	 * 
-	 * @return True if and only if both codes have no compiler errors and some
-	 *         tests are not satisfied.
+	 * @return True if and only if both codes have no compiler errors and
+	 *         exactly one test ist not satisfied.
 	 */
-	public boolean codeCompilesAndDoesNotFulfillTests() {
-		return !compiler.getCompilerResult().hasCompileErrors()
-				&& compiler.getTestResult().getNumberOfFailedTests() > 0;
+	public boolean codeCompilesAndDoesNotFulfillOneTest() {
+		try {
+			return codeCompiles()
+					&& compiler.getTestResult().getNumberOfFailedTests() == 1;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * Builds a String composed of all Test-Errors and returns them with a new
+	 * line at the end of each error.
+	 * 
+	 * @return The String of Test-Errors
+	 */
+	public String getFailedTestMessages() {
+		try {
+			String errors = "";
+			TestResult result = compiler.getTestResult();
+			for (TestFailure failure : result.getTestFailures()) {
+				errors += "Testmethode '" + failure.getMethodName() + "' ist fehlgeschlagen: " + failure.getMessage()
+						+ "\n";
+			}
+			// String empty = All tests happy
+			if (errors.equals("")) {
+				return "Keine fehlschlagenden Tests!";
+			}
+			return errors;
+		} catch (Exception e) {
+			return "";
+		}
 	}
 
 	/**
@@ -78,7 +164,7 @@ public class KataLiveCompiler {
 			}
 			return errorString;
 		} else {
-			return "No compile-error detected, good job! :D";
+			return "Code kompiliert einwandfrei, gute Arbeit :D";
 		}
 	}
 	
@@ -124,7 +210,7 @@ public class KataLiveCompiler {
 	 *            The sourcecode of the class to find a name for
 	 * @return The name of the Class.
 	 */
-	public String getClassName(String classCode) {
+	public static String getClassName(String classCode) {
 		String className = "";
 		// Locate Classname
 		int indexBeginName = classCode.indexOf("class") + 5;
@@ -138,5 +224,23 @@ public class KataLiveCompiler {
 		// Remove whitespace
 		className = className.replace(" ", "");
 		return className;
+	}
+
+	/**
+	 * Returns a Collection of Errors
+	 * 
+	 * @return Errors of the test class
+	 */
+	public Collection<CompileError> getTestClassErrors() {
+		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(testClass);
+	}
+
+	/**
+	 * Returns a Collection of Errors
+	 * 
+	 * @return Errors of the code class
+	 */
+	public Collection<CompileError> getCodeClassErrors() {
+		return compiler.getCompilerResult().getCompilerErrorsForCompilationUnit(codeClass);
 	}
 }

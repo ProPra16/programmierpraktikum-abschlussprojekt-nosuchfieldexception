@@ -11,49 +11,26 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <Label layoutX="590.0" layoutY="35.0" prefHeight="61.0" prefWidth="100.0" text="Test">
-      <font>
-        <Font size="50.0" fx:id="x1" />
-      </font>
-    </Label>
-    <Label font="$x1" layoutX="1288.0" layoutY="35.0" text="Code &amp; Refractor" />
-    <TextArea fx:id="codeIn" layoutX="1080.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
-    <TextArea fx:id="testIn" layoutX="240.0" layoutY="135.0" prefHeight="900.0" prefWidth="800.0" wrapText="true" />
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1717.0" AnchorPane.topAnchor="0.0">
-      <children>
-        <Button fx:id="load" layoutX="30.0" layoutY="205.0" mnemonicParsing="false" prefWidth="146.0" snapToPixel="false" text="Laden" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="205.0" />
-        <Button fx:id="save" layoutX="29.0" layoutY="240.0" mnemonicParsing="false" prefWidth="146.0" text="Speichern" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="240.0" />
-        <Button fx:id="next" layoutX="31.0" layoutY="296.0" mnemonicParsing="false" prefWidth="146.0" text="Next Step" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="296.0" />
-        <Button fx:id="start" layoutX="29.0" layoutY="535.0" mnemonicParsing="false" prefWidth="146.0" text="Start" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="535.0" />
-        <TextField fx:id="TimeIn" layoutX="29.0" layoutY="505.0" prefWidth="147.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="505.0" />
-        <Label layoutX="32.0" layoutY="457.0" prefHeight="35.0" prefWidth="147.0" text="Zeit eingeben" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="457.0">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-        <Label layoutX="27.0" layoutY="352.0" prefWidth="146.0" text="      Timer" textAlignment="LEFT" wrapText="true" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="352.0">
-          <font>
-            <Font name="System Bold" size="24.0" />
-          </font>
-        </Label>
-        <Label fx:id="timeOut" layoutX="41.0" layoutY="387.0" text="0000" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="387.0">
-          <font>
-            <Font name="OCR A Extended" size="50.0" />
-          </font>
-        </Label>
-            <ImageView fitHeight="167.0" fitWidth="163.0" layoutX="23.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="24.0">
-               <image>
-                  <Image url="@Logo.PNG" />
-               </image>
-            </ImageView>
-      </children>
-    </AnchorPane>
-  </children>
-   <opaqueInsets>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </opaqueInsets>
-   <cursor>
-      <Cursor fx:constant="HAND" />
-   </cursor>
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tddt.MenuController">
+   <children>									<!-- >die Buttons für die Grundfunktionen: Laden und Speichern sowie zwischen den TDD Schritten wechseln -->
+   	  <Label text="Projekt 8" BorderPane.alignment="CENTER" />
+   
+   	  <Button layoutX="35.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLoadButton" text="Laden" />
+      <Button layoutX="100.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleSaveButton" text="Speichern" />
+      <Button layoutX="300.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleNextStepButton" text="Next Step" />
+      
+      <CheckBox fx:id="babystepsCheckBox" layoutX="475.0" layoutY="29.0" mnemonicParsing="false" text="Babysteps" /> <!-- >Felder für Zeitmessungen -->
+      <TextField fx:id="timeTextField" layoutX="560.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" text="2.5 min" />
+      <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleStartButton" text="Start" />
+      
+      <Label layoutX="25.0" layoutY="76.0" text="Test" />		<!-- >Die Textfelder der für den TDD Ablauf -->
+      <TextArea fx:id="testArea" layoutX="25.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />	
+      <Label layoutX="425.0" layoutY="76.0" text="Code" />
+      <TextArea fx:id="codeArea" layoutX="425.0" layoutY="100.0" prefHeight="333.0" prefWidth="350.0" />
+      
+      <Label layoutX="25.0" layoutY="440.0" text="Output" />
+      <TextArea fx:id="outputArea" editable="false" layoutX="25.0" layoutY="465.0" prefHeight="300.0" prefWidth="750.0" />
+      <Button fx:id="backToRedButton" layoutX="200.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackToRedButton" text="Back to RED" disable="true" />	<!-- >Die Ausgabe: enhält alle Informationen wie Zeit, Statistiken und etc. -->
+      
+   </children>
 </AnchorPane>
