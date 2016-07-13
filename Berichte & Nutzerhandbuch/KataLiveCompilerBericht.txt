@@ -1,12 +1,16 @@
-Die Klasse KataLiveCompiler nutzt den JavaStringCompiler und die CompilationUnit aus der virtual-kata-library um den vom Nutzer eingegebenen Code zu kompilieren und gibt Compiler-
-fehler aus, wenn welche auftreten, testet die JUnit Tests und gibt deren Fehler aus und gibt dem Nutzer über das Output-Fenster zusätzlich noch eine Übersicht darüber, in welcher
-Phase des TDD er sich gerade befindet.
+Die Klasse KataLiveCompiler nutzt den JavaStringCompiler und die CompilationUnit aus der virtual-kata-library um den vom Nutzer 
+eingegebenen Code zu kompilieren und gibt Compilerfehler aus, wenn welche auftreten, testet die JUnit Tests und gibt deren 
+Fehler aus und gibt dem Nutzer über das Output-Fenster zusätzlich noch eine Übersicht darüber, in welcher Phase des TDD er sich
+gerade befindet.
+
+Die Funktionalität des KataLiveCompilers wird auch selber automatisch mit JUnit-Tests getestet.
 
 Designentscheidungen:
 
-Der Name er Klasse wird immer aus dem Quellcode gelesen, das erspart zusätzliche Textfelder und man geht somit davon aus, dass der Name der Klasse richtig geschrieben wurde.
-Um zu gewährleisten, dass der Name richtig ausgelesen werden kann habe ich zusätzliche Abragen eingeführt, die dafür sorgen, dass keine Exception geworfen wird.
+Der Name er Klasse wird immer aus dem Quellcode gelesen, das erspart zusätzliche Textfelder und man geht somit davon aus, dass der
+Name der Klasse richtig geschrieben wurde. Um zu gewährleisten, dass der Name richtig ausgelesen werden kann habe ich zusätzliche 
+Abfragen eingeführt, die dafür sorgen, dass keine Exception geworfen wird.
 
-Zur Refactor-Phase: Der Benutzer gelangt immer nach der GREEN-Phase in die Refacor-Phase in der er den Code verbessern kann. Danach kann er nur weiter zur RED-Phase kommen,
-wenn der code immer noch kompiliert und alle Tests immer noch erfolgreich sind. Der Nutzer kann also auch einfach so den Next-Step Button drücken um somit die Refactor-Phase
-zu überspringen.
+Zur Refactor-Phase: Der Benutzer gelangt immer nach der GREEN-Phase in die Refacor-Phase in der er den Code verbessern kann. 
+Danach kann er nur weiter zur RED-Phase kommen, wenn der Code immer noch kompiliert und alle Tests immer noch erfolgreich sind. 
+Der Nutzer kann also auch einfach so den Next-Step Button drücken um somit die Refactor-Phase zu überspringen.
