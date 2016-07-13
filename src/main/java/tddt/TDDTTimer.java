@@ -1,43 +1,34 @@
 package tddt;
 
-import java.util.Timer;
-
 public class TDDTTimer {
 	
-	private Timer timer;
+	private long test, code, refactor, startTime;
 	
-	private TDDTTimerTask test, code, refactor;
 	
 	public TDDTTimer() {
-		test = new TDDTTimerTask();
-		code = new TDDTTimerTask();
-		refactor = new TDDTTimerTask();
+		test = 0;
+		code = 0;
+		refactor = 0;
+		startTime = System.currentTimeMillis();
 	}
 	
-	public void changeToTestingTimer() {
-		timer.cancel();
-		timer = new Timer();
-		timer.schedule(test, 0, 1000);
+	public void addTestTime() {
+		test += System.currentTimeMillis() - startTime;
+		startTime = System.currentTimeMillis();
 	}
 	
-	public void changeToCodingTimer() {
-		timer.cancel();
-		timer = new Timer();
-		timer.schedule(code, 0, 1000);
+	public void addCodeTime() {
+		code += System.currentTimeMillis() - startTime;
+		startTime = System.currentTimeMillis();
 	}
 	
-	public void changeToRefactorTimer() {
-		timer.cancel();
-		timer = new Timer();
-		timer.schedule(refactor, 0, 1000);
+	public void addRefactorTime() {
+		refactor += System.currentTimeMillis() - startTime;
+		startTime = System.currentTimeMillis();
 	}
 	
-	public void stop() {
-		timer.cancel();
-	}
-	
-	public int[] getTimes() {
-		return new int[] {test.getTime(), code.getTime(), refactor.getTime()};
+	public long[] getTimes() {
+		return new long[] {test, code, refactor};
 	}
 	
 }

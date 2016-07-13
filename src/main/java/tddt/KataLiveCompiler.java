@@ -167,6 +167,18 @@ public class KataLiveCompiler {
 			return "Code kompiliert einwandfrei, gute Arbeit :D";
 		}
 	}
+	
+	public Collection<CompileError> getTestErrors() {
+		CompilerResult result = compiler.getCompilerResult();
+		if(!result.hasCompileErrors()) return null;
+		return result.getCompilerErrorsForCompilationUnit(testClass);
+	}
+	
+	public Collection<CompileError> getCodeErrors() {
+		CompilerResult result = compiler.getCompilerResult();
+		if(!result.hasCompileErrors()) return null;
+		return result.getCompilerErrorsForCompilationUnit(codeClass);
+	}
 
 	/**
 	 * Searches for the lines in the code, where the error ocurred
