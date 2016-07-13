@@ -65,7 +65,7 @@ public class KataLiveCompiler {
 			outputArea.setText("Die Klassen müssen unterschiedliche Namen haben!");
 		} else {
 			KataLiveCompiler newCompiler = new KataLiveCompiler(inputCode, inputTest);
-			outputArea.setText(newCompiler.getErrors() + "\n" + newCompiler.getFailedTestMessages());
+			outputArea.setText(newCompiler.getErrors() + newCompiler.getFailedTestMessages());
 			return newCompiler;
 		}
 		return null;
@@ -132,7 +132,7 @@ public class KataLiveCompiler {
 			}
 			// String empty = All tests happy
 			if (errors.equals("")) {
-				return "Keine fehlschlagenden Tests!";
+				return "Keine fehlschlagenden Tests!\n";
 			}
 			return errors;
 		} catch (Exception e) {
@@ -164,7 +164,7 @@ public class KataLiveCompiler {
 			}
 			return errorString;
 		} else {
-			return "Code kompiliert einwandfrei, gute Arbeit :D";
+			return "Code kompiliert einwandfrei, gute Arbeit :D\n";
 		}
 	}
 	

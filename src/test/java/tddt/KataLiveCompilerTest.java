@@ -100,7 +100,7 @@ public class KataLiveCompilerTest {
 						+ "   }\n "
 						+ "}");
 		String errors = compiler.getErrors();
-		assertTrue("There is no error therefore the String should be positive", errors.equals("Code kompiliert einwandfrei, gute Arbeit :D"));
+		assertTrue("There is no error therefore the String should be positive", errors.equals("Code kompiliert einwandfrei, gute Arbeit :D\n"));
 	}
 	
 	@Test public void compilerFindsClassName(){

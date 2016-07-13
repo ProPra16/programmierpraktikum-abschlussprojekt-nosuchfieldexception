@@ -6,25 +6,13 @@ public interface BabystepsTimer {
 	 * Returns the time one coding step is allowed to take
 	 * @return The time one coding cycle takes in milliseconds
 	 */
-	public long getCodingDuration();
-	
-	/**
-	 * Returns the time one testing step is allowed to take
-	 * @return The time one testing cycle takes in milliseconds
-	 */
-	public long getTestingDuration();
-	
-	/**
-	 * Returns the remaining testing time
-	 * @return the remaining testing time in milliseconds
-	 */
-	public long getRemaingTestingTime();
+	public long getDuration();
 	
 	/**
 	 * Returns the remaining coding time
 	 * @return the remaining coding time in milliseconds
 	 */
-	public long getRemainingCodingTime();
+	public long getRemainingTime();
 	
 	/**
 	 * Registers a BabystepsUser who will be be notified for both running timers
@@ -35,37 +23,16 @@ public interface BabystepsTimer {
 	/**
 	 * Starts the testing cycle timer
 	 */
-	public void startTestingTimer();
-	
-	/**
-	 * Stops the testing cycle timer
-	 */
-	public void stopTestingTimer();
-	
-//	/**
-//	 * Pauses the testing timer
-//	 */
-//	public void pauseTestingTimer();
-	
-	/**
-	 * Starts the coding cycle timer
-	 */
-	public void startCodingTimer();
+	public void startTimer();
 	
 	/**
 	 * Stops the coding cycle timer
 	 */
-	public void stopCodingTimer();
+	public void stopTimer();
 	
-	public void stopAll();
-	
-//	/**
-//	 * Pauses the coding timer
-//	 */
-//	public void pauseCodingTimer();
-	
-	void notifyAllUsersTestingTimeElapsed();
-	
-	void notifyAllUsersCodingTimeElapsed();
+	/**
+	 * Informs all subscribed Users about Timer finish
+	 */
+	void notifyAllUsersTimeElapsed();
 
 }

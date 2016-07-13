@@ -6,4 +6,10 @@ before_install:
  
 notifications:
   email: false
+  
+sudo: false
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
 

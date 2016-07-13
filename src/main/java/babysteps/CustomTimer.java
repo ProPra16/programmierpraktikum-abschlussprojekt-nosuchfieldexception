@@ -5,17 +5,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CustomTimer implements BabystepsTimer {
-	private Timer testingTimer, codingTimer;
-	private long testingStarted, codingStarted;
-	private final long testingTime, codingTime;
+	private Timer timer;
+	private long timeStarted;
+	private final long time;
 	private ArrayList<BabystepsUser> userList;
 	
 	public CustomTimer(long testingTime, long codingTime) {
 		userList = new ArrayList<BabystepsUser>();
-		testingTimer = new Timer();
-		codingTimer = new Timer();
-		this.testingTime = testingTime;
-		this.codingTime = codingTime;
+		timer = new Timer();
+		this.time = testingTime;
 	}
 	
 	public CustomTimer(BabystepsUser user, long testingTime, long codingTime) {
@@ -24,59 +22,34 @@ public class CustomTimer implements BabystepsTimer {
 	}
 	
 	@Override
-	public long getCodingDuration() {
-		return codingTime;
+	public long getDuration() {
+		return time;
 	}
 
 	@Override
-	public long getTestingDuration() {
-		return testingTime;
+	public long getRemainingTime() {
+		return time-(System.currentTimeMillis()-timeStarted);
 	}
 
 	@Override
-	public long getRemaingTestingTime() {
-		return testingTime-(System.currentTimeMillis()-testingStarted);
-	}
-
-	@Override
-	public long getRemainingCodingTime() {
-		return codingTime-(System.currentTimeMillis()-codingStarted);
-	}
-
-	@Override
-	public void startTestingTimer() {
-		testingStarted = System.currentTimeMillis();
-		testingTimer.schedule(new TimerTask() {
+	public void startTimer() {
+		System.out.println("new Timer started");
+		timeStarted = System.currentTimeMillis();
+		timer.schedule(new TimerTask() {
 			
 			@Override
 			public void run() {
-				notifyAllUsersTestingTimeElapsed();
-				stopTestingTimer();
+				notifyAllUsersTimeElapsed();
+				stopTimer();
 			}
-		}, getTestingDuration());
+		}, getDuration());
 	}
 
 	@Override
-	public void stopTestingTimer() {
-		testingTimer.cancel();
-	}
-
-	@Override
-	public void startCodingTimer() {
-		codingStarted = System.currentTimeMillis();
-		codingTimer.schedule(new TimerTask() {
-			
-			@Override
-			public void run() {
-				notifyAllUsersCodingTimeElapsed();
-				stopCodingTimer();
-			}
-		}, getCodingDuration());
-	}
-
-	@Override
-	public void stopCodingTimer() {
-		codingTimer.cancel();
+	public void stopTimer() {
+		System.out.println("timer stopped");
+		timer.cancel();
+		timer = new Timer();
 	}
 
 	@Override
@@ -84,22 +57,9 @@ public class CustomTimer implements BabystepsTimer {
 		userList.add(user);
 	}
 	
-	public void notifyAllUsersTestingTimeElapsed() {
+	public void notifyAllUsersTimeElapsed() {
 		for(int i = 0; i < userList.size(); i++) {
-			userList.get(i).notifiyTestingTimerElapsed();
+			userList.get(i).notifyTimerElapsed();
 		}
-	}
-
-	@Override
-	public void notifyAllUsersCodingTimeElapsed() {
-		for(int i = 0; i < userList.size(); i++) {
-			userList.get(i).notifyCodingTimerElapsed();
-		}
-	}
-
-	@Override
-	public void stopAll() {
-		stopCodingTimer();
-		stopTestingTimer();
 	}
 }
