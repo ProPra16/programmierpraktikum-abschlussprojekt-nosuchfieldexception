@@ -170,7 +170,7 @@ public class MenuController {
 		} else {
 			// Requirements not met
 			outputArea.appendText("\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
-					+ "\nEs muss genau ein Test fehlschlagen");
+					+ "\nEs muss genau ein Test fehlschlagen, oder der Code nicht kompilieren");
 		}
 	}
 	
@@ -234,7 +234,7 @@ public class MenuController {
 			phase = Color.RED;
 			// Notify the user
 			outputArea.appendText("\nBedingung erfüllt. Willkommen in der RED-Phase:\n"
-					+ "Einen fehlschlagenden Test schreiben :)");
+					+ "Einen fehlschlagenden Test schreiben, oder nicht kompilierbaren Code schreiben :)");
 			// Activate/Deactivate TextAreas
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
@@ -278,7 +278,7 @@ public class MenuController {
 			codeArea.setText(oldCodeClass);
 			// tddttimer.changeToTestingTimer();
 		} else {
-			outputArea.appendText("\nVon hier aus geht es nicth zu RED zurück :)");
+			outputArea.appendText("\nVon hier aus geht es nicht zu RED zurück :)");
 		}
 	}
 }
