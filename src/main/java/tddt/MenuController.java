@@ -92,14 +92,18 @@ public class MenuController {
 			public void notifyTimerElapsed() { 
 				refreshTimer.stop();
 				timeOutLabel.setText("00:00");
-				outputArea.appendText("Babysteps Timer has elapsed! Resetting changes...\n");
+				outputArea.appendText("Babysteps Timer abgelaufen. Setze Änderungen zurück...\n");
 				if (phase.equals(Color.RED)) {
 					testArea.setText(latestTestString);
-					switchToRefactorPhaseWithoutCompiling();
+					//switchToRefactorPhaseWithoutCompiling();
+					timer.startTimer();
+					refreshTimer.playFromStart();
 					// GREEN-PHASE
 				} else if (phase.equals(Color.GREEN)) {
 					codeArea.setText(latestCodeString);
-					switchToRedPhaseWithoutCompiling();
+					//switchToRedPhaseWithoutCompiling();
+					timer.startTimer();
+					refreshTimer.playFromStart();
 					// REFACTOR-Phase
 				} else if (phase.equals(Color.BLACK)) {
 					//Hm nö
