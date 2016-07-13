@@ -18,6 +18,20 @@ public class Menu extends Application {
 		//CSS laden
 		scene.getStylesheets().add(getClass().getClassLoader().getResource("menu.css").toExternalForm());
 
+		//Output-Fenster öffnen, wenn man fertig ist
+		primaryStage.setOnCloseRequest(event -> {
+			Parent parent;
+	        try {
+	            parent = FXMLLoader.load(getClass().getClassLoader().getResource("output.fxml"));
+	            Stage stage = new Stage();
+	            stage.setTitle("Output");
+	            stage.setScene(new Scene(parent, 800, 800));
+	            stage.show();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		});
+		
 		//Fenster anzeigen
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("TDDT");

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -13,7 +14,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <PieChart id="piechart" fx:id"piechart" layoutX="10" layoutY="110" />
+      <PieChart id="piechart" fx:id="piechart" layoutX="10" layoutY="110" />
       <TextArea fx:id="out" layoutX="35.0" layoutY="84.0" prefHeight="313.0" prefWidth="730.0" />
       <TextField layoutX="35.0" layoutY="438.0" prefHeight="25.0" prefWidth="730.0" />
       <Label layoutX="35.0" layoutY="411.0" text="Bewertung">
