@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Menu extends Application {
@@ -23,7 +24,7 @@ public class Menu extends Application {
 		primaryStage.setTitle("TDDT");
 	    primaryStage.centerOnScreen();
 	    primaryStage.setMaximized(true);
-	    //primaryStage.getIcons().addAll((getClass().getClassLoader().getResource("Logo.PNG")));
+	    primaryStage.getIcons().add((new Image("Logo.PNG")));
 		primaryStage.show();
 
 	}
