@@ -3,6 +3,8 @@ eingegebenen Code zu kompilieren und gibt Compilerfehler aus, wenn welche auftre
 Fehler aus und gibt dem Nutzer über das Output-Fenster zusätzlich noch eine Übersicht darüber, in welcher Phase des TDD er sich
 gerade befindet.
 
+Die einzelnen Methoden werden im Javadoc näher beschrieben.
+
 Die Funktionalität des KataLiveCompilers wird auch selber automatisch mit JUnit-Tests getestet.
 
 Designentscheidungen:
