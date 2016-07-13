@@ -58,6 +58,7 @@ public class MenuController {
 	private boolean babystepsEnabled;
 	private String latestTestString;
 	private String latestCodeString;
+	private Timeline refreshTimer;
 
 	@FXML
 	public void handleLoadButton() {
@@ -84,26 +85,24 @@ public class MenuController {
 	@FXML
 	public void handleStartButton() {
 		babystepsEnabled = true;
+		startButton.setDisable(true);
 		long time = timeSpinner.getValue() * 60 * 1000;
-		Timeline refreshTimer = new Timeline();
+		refreshTimer = new Timeline();
 		timer = new CustomTimer(new BabystepsUser() {
 
 			@Override
-			public void notifyTimerElapsed() { 
+			public void notifyTimerElapsed() {
+				timer.stopTimer();
 				refreshTimer.stop();
 				timeOutLabel.setText("00:00");
+				babystepsEnabled = false;
+				startButton.setDisable(false);
 				outputArea.appendText("Babysteps Timer abgelaufen. Setze Änderungen zurück...\n");
 				if (phase.equals(Color.RED)) {
 					testArea.setText(latestTestString);
-					//switchToRefactorPhaseWithoutCompiling();
-					timer.startTimer();
-					refreshTimer.playFromStart();
 					// GREEN-PHASE
 				} else if (phase.equals(Color.GREEN)) {
 					codeArea.setText(latestCodeString);
-					//switchToRedPhaseWithoutCompiling();
-					timer.startTimer();
-					refreshTimer.playFromStart();
 					// REFACTOR-Phase
 				} else if (phase.equals(Color.BLACK)) {
 					//Hm nö
@@ -133,16 +132,22 @@ public class MenuController {
 				if(babystepsEnabled && phase.equals(Color.GREEN)) {
 					timer.stopTimer();
 					timer.startTimer();
+					refreshTimer.playFromStart();
 				}
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
 				switchToRefactorPhase();
+				if(babystepsEnabled && phase.equals(Color.BLACK)) {
+					refreshTimer.stop();
+					timer.stopTimer();
+				}
 				// REFACTOR-Phase
 			} else if (phase.equals(Color.BLACK)) {
 				switchToRedPhase();
-				if(babystepsEnabled && phase.equals(Color.BLACK)) {
+				if(babystepsEnabled && phase.equals(Color.RED)) {					
 					timer.stopTimer();
 					timer.startTimer();
+					refreshTimer.playFromStart();
 				}
 			}
 		}
@@ -175,18 +180,6 @@ public class MenuController {
 		}
 	}
 	
-	private void switchToGreenPhaseWithoutCompiling(){
-		phase = Color.GREEN;
-		// Notify the user
-		outputArea.appendText("Willkommen in der GREEN-Phase:\n"
-				+ "Den fehlschlagenden Test erfüllen :)");
-		// Activate/Deactivate TextAreas/Buttons
-		testArea.setEditable(false);
-		codeArea.setEditable(true);
-		backToRedButton.setDisable(false);
-		latestTestString = testArea.getText();
-	}
-	
 	/**
 	 * This code is executed when the user tries to switch to the REFACTOR-Phase
 	 */
@@ -213,18 +206,6 @@ public class MenuController {
 		}
 	}
 	
-	private void switchToRefactorPhaseWithoutCompiling(){
-		phase = Color.BLACK;
-		outputArea.appendText("Willkommen in der REFACTOR-Phase:\n"
-				+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)");
-		// Activate/Deactivate TextAreas/Buttons
-		testArea.setEditable(false);
-		codeArea.setEditable(true);
-		backToRedButton.setDisable(true);
-		
-		latestCodeString = codeArea.getText();
-	}
-	
 	/**
 	 * This code is executed when the user tries to switch to the RED-Phase
 	 */
@@ -248,14 +229,6 @@ public class MenuController {
 					outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
 							+ "\nNach dem Refactoren müssen immer noch alle Tests erfüllt werden");
 		}
-	}
-	
-	private void switchToRedPhaseWithoutCompiling(){
-		phase = Color.RED;
-		outputArea.appendText("Willkommen in der RED-Phase:\n");
-		testArea.setEditable(true);
-		codeArea.setEditable(false);
-		backToRedButton.setDisable(true);
 	}
 	
 

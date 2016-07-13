@@ -33,6 +33,7 @@ public class CustomTimer implements BabystepsTimer {
 
 	@Override
 	public void startTimer() {
+		System.out.println("new Timer started");
 		timeStarted = System.currentTimeMillis();
 		timer.schedule(new TimerTask() {
 			
@@ -46,6 +47,7 @@ public class CustomTimer implements BabystepsTimer {
 
 	@Override
 	public void stopTimer() {
+		System.out.println("timer stopped");
 		timer.cancel();
 		timer = new Timer();
 	}
