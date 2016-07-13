@@ -152,6 +152,7 @@ public class MenuController {
 			//Save the code class code
 			oldCodeClass = codeArea.getText();
 			tddttimer.changeToCodingTimer();
+			System.out.println(tddttimer.getTimes()[0]);
 		} else {
 			// Requirements not met
 			outputArea.setText(outputArea.getText()
@@ -176,6 +177,7 @@ public class MenuController {
 			codeArea.setEditable(true);
 			backToRedButton.setDisable(true);
 			tddttimer.changeToRefactorTimer();
+			System.out.println(tddttimer.getTimes()[1]);
 		} else {
 			// Requirements not met
 			outputArea.setText(outputArea.getText()
@@ -200,6 +202,7 @@ public class MenuController {
 			codeArea.setEditable(false);
 			backToRedButton.setDisable(true);
 			tddttimer.changeToTestingTimer();
+			System.out.println(tddttimer.getTimes()[2]);
 		} else {
 			// Requirements not met
 			outputArea.setText(
@@ -229,6 +232,7 @@ public class MenuController {
 			//Reset code class code
 			codeArea.setText(oldCodeClass);
 			tddttimer.changeToTestingTimer();
+			System.out.println(tddttimer.getTimes()[1]);
 		} else {
 			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
 		}
