@@ -23,6 +23,7 @@ public class Menu extends Application {
 		primaryStage.setTitle("TDDT");
 	    primaryStage.centerOnScreen();
 	    primaryStage.setMaximized(true);
+	    //primaryStage.getIcons().addAll((getClass().getClassLoader().getResource("Logo.PNG")));
 		primaryStage.show();
 
 	}
