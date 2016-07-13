@@ -75,8 +75,6 @@ public class MenuController {
 
 	@FXML
 	public void handleStartButton() {
-		// TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just
-		// for progress
 		/*if (babystepsCheckBox.isSelected()) { // Babysteps!
 			long time = (long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000 * 60);
 			timer = new CustomTimer(new BabystepsUser() {
@@ -138,9 +136,9 @@ public class MenuController {
 																	// timer
 				if (!phase.equals(tempPhase)) { // Next step button successful
 					if (phase.equals(Color.RED)) {
-						timer.startTestingTimer();
+						timer.startTimer();
 					} else if (phase.equals(Color.GREEN)) {
-						timer.startCodingTimer();
+						timer.startTimer();
 					}
 				//}
 			}
