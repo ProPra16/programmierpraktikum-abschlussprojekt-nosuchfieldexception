@@ -154,7 +154,7 @@ public class MenuController {
 		if (!compiler.codeCompiles() || compiler.codeCompilesAndDoesNotFulfillOneTest()) {
 			phase = Color.GREEN;
 			// Notify the user
-			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
+			outputArea.appendText("\nBedingung erfüllt. Willkommen in der GREEN-Phase:\n"
 					+ "Den fehlschlagenden Test erfüllen :)");
 			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
@@ -165,8 +165,7 @@ public class MenuController {
 			// tddttimer.changeToCodingTimer();
 		} else {
 			// Requirements not met
-			outputArea.setText(outputArea.getText()
-					+ "\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
+			outputArea.appendText("\nCode erfüllt nicht die Bedingung um in die GREEN-Phase zu wechseln:"
 					+ "\nEs muss genau ein Test fehlschlagen");
 		}
 	}
@@ -204,7 +203,7 @@ public class MenuController {
 		if (compiler.codeCompilesAndFulfillsTests()) {
 			phase = Color.RED;
 			// Notify the user
-			outputArea.setText(outputArea.getText() + "\nBedingung erfüllt. Willkommen in der RED-Phase:\n"
+			outputArea.appendText("\nBedingung erfüllt. Willkommen in der RED-Phase:\n"
 					+ "Einen fehlschlagenden Test schreiben :)");
 			// Activate/Deactivate TextAreas
 			testArea.setEditable(true);
@@ -213,8 +212,7 @@ public class MenuController {
 			// tddttimer.changeToTestingTimer();
 		} else {
 			// Requirements not met
-			outputArea.setText(
-					outputArea.getText() + "\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
+			outputArea.appendText("\nCode erfüllt nicht die Bedingung um in die RED-Phase zu wechseln:"
 							+ "\nNach dem Refactoren müssen immer noch alle Tests erfüllt werden");
 		}
 	}
@@ -241,7 +239,7 @@ public class MenuController {
 			codeArea.setText(oldCodeClass);
 			// tddttimer.changeToTestingTimer();
 		} else {
-			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
+			outputArea.appendText("\nVon hier aus geht es nicth zu RED zurück :)");
 		}
 	}
 }
