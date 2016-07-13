@@ -63,7 +63,6 @@ public class MenuController {
 	public void handleStartButton() {
 		// TDDCycle cycle = new BabystepsCycle(); //Wherever it comes from? Just
 		// for progress
-		tddttimer.changeToTestingTimer();
 		if (babystepsCheckBox.isSelected()) { // Babysteps!
 			long time = (long) (Double.parseDouble(timeTextField.getText(0, timeTextField.getText().length() - 3)) * 1000 * 60);
 			timer = new CustomTimer(new BabystepsUser() {
@@ -110,12 +109,15 @@ public class MenuController {
 			// RED-Phase
 			Color tempPhase = phase;
 			if (phase.equals(Color.RED)) {
+				tddttimer.addTestTime();
 				switchToGreenPhase();
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
+				tddttimer.addCodeTime();
 				switchToRefactorPhase();
 				// REFACTOR-Phase
 			} else if (phase.equals(Color.BLACK)) {
+				tddttimer.addCodeTime();
 				switchToRedPhase();
 			}
 			
@@ -151,8 +153,7 @@ public class MenuController {
 			backToRedButton.setDisable(false);
 			//Save the code class code
 			oldCodeClass = codeArea.getText();
-			tddttimer.changeToCodingTimer();
-			System.out.println(tddttimer.getTimes()[0]);
+			//System.out.println(tddttimer.getTimes()[0]);
 		} else {
 			// Requirements not met
 			outputArea.setText(outputArea.getText()
@@ -176,8 +177,7 @@ public class MenuController {
 			testArea.setEditable(false);
 			codeArea.setEditable(true);
 			backToRedButton.setDisable(true);
-			tddttimer.changeToRefactorTimer();
-			System.out.println(tddttimer.getTimes()[1]);
+			//System.out.println(tddttimer.getTimes()[1]);
 		} else {
 			// Requirements not met
 			outputArea.setText(outputArea.getText()
@@ -201,8 +201,7 @@ public class MenuController {
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
 			backToRedButton.setDisable(true);
-			tddttimer.changeToTestingTimer();
-			System.out.println(tddttimer.getTimes()[2]);
+			//System.out.println(tddttimer.getTimes()[2]);
 		} else {
 			// Requirements not met
 			outputArea.setText(
@@ -221,6 +220,7 @@ public class MenuController {
 	 */
 	public void handleBackToRedButton() {
 		if (phase == Color.GREEN) {
+			tddttimer.addCodeTime();
 			phase = Color.RED;
 			// Notify the user
 			outputArea.setText("\nWillkommen zurück in der RED-Phase:\n"
@@ -231,8 +231,7 @@ public class MenuController {
 			backToRedButton.setDisable(true);
 			//Reset code class code
 			codeArea.setText(oldCodeClass);
-			tddttimer.changeToTestingTimer();
-			System.out.println(tddttimer.getTimes()[1]);
+			//System.out.println(tddttimer.getTimes()[1]);
 		} else {
 			outputArea.setText(outputArea.getText() + "\nVon hier aus geht es nicth zu RED zurück :)");
 		}
