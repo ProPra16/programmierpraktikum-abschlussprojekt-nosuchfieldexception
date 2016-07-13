@@ -2,7 +2,8 @@ package tddt;
 
 public class TDDTTimer {
 	
-	private long test, code, refactor, startTime;
+	static long test, code, refactor;
+	private long startTime;
 	
 	
 	public TDDTTimer() {
@@ -25,10 +26,6 @@ public class TDDTTimer {
 	public void addRefactorTime() {
 		refactor += System.currentTimeMillis() - startTime;
 		startTime = System.currentTimeMillis();
-	}
-	
-	public long[] getTimes() {
-		return new long[] {test, code, refactor};
 	}
 	
 }
