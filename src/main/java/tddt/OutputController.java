@@ -2,7 +2,7 @@ package tddt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import javafx.scene.control.Button;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +12,15 @@ import javafx.scene.chart.PieChart;
 
 public class OutputController implements Initializable {
 	
-	@FXML PieChart piechart;
+	@FXML 
+	private PieChart piechart;
+	
+	@FXML 
+	private Button buttonPieChart;
 	
 	@FXML
 	private void loadPieChart(ActionEvent event) {
+		buttonPieChart.setVisible(false);
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
         		new PieChart.Data("Time for Testwriting", TDDTTimer.test),
         		new PieChart.Data("Time for Coding", TDDTTimer.code),
