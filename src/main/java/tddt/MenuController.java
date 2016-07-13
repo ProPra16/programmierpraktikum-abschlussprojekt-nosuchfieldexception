@@ -162,7 +162,7 @@ public class MenuController {
 		if (!compiler.codeCompiles() || compiler.codeCompilesAndDoesNotFulfillOneTest()) {
 			phase = Color.GREEN;
 			// Notify the user
-			outputArea.appendText("Bedingung erfüllt. Willkommen in der GREEN-Phase:\n"
+			outputArea.setText("Bedingung erfüllt. Willkommen in der GREEN-Phase:\n"
 					+ "Den fehlschlagenden Test erfüllen :)");
 			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
@@ -189,7 +189,7 @@ public class MenuController {
 		if (compiler.codeCompilesAndFulfillsTests()) {
 			phase = Color.BLACK;
 			// Notify the user
-			outputArea.appendText("Bedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
+			outputArea.setText("Bedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
 					+ "Code verbessern falls gewünscht, ansonsten einfach Next Step!\n");
 			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
