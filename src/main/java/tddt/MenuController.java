@@ -90,6 +90,7 @@ public class MenuController {
 	public void handleStartButton() {
 		babystepsEnabled = true;
 		startButton.setDisable(true);
+		timeSpinner.setDisable(true);
 		long time = timeSpinner.getValue() * 60 * 1000;
 		refreshTimer = new Timeline();
 		timer = new CustomTimer(new BabystepsUser() {
@@ -101,6 +102,7 @@ public class MenuController {
 				timeOutLabel.setText("00:00");
 				babystepsEnabled = false;
 				startButton.setDisable(false);
+				timeSpinner.setDisable(false);
 				outputArea.appendText(
 						"Babysteps Timer abgelaufen. Setze Änderungen zurück...\nTimer gestoppt. Drücke Start um weiter Babysteps zu nutzen\n");
 				if (phase.equals(Color.RED)) {
@@ -168,7 +170,7 @@ public class MenuController {
 			phase = Color.GREEN;
 			// Notify the user
 			outputArea.appendText("Bedingung erfüllt. Willkommen in der GREEN-Phase:\n"
-					+ "Den fehlschlagenden Test erfüllen :)\n");
+					+ "Den fehlschlagenden Test erfüllen.\n");
 			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
 			codeArea.setEditable(true);
@@ -194,7 +196,7 @@ public class MenuController {
 			phase = Color.BLACK;
 			// Notify the user
 			outputArea.appendText("Bedingung erfüllt. Willkommen in der REFACTOR-Phase:\n"
-					+ "Code verbessern falls gewünscht, ansonsten einfach Next Step! :)\n");
+					+ "Code verbessern falls gewünscht, ansonsten einfach Next Step!\n");
 			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(false);
 			codeArea.setEditable(true);
@@ -205,7 +207,7 @@ public class MenuController {
 		} else {
 			// Requirements not met
 			outputArea.appendText("Code erfüllt nicht die Bedingung um in die REFACTOR-Phase zu wechseln:"
-					+ "\nAlle Tests müssn erfüllt werden.\n");
+					+ "\nAlle Tests müssen erfüllt werden.\n");
 		}
 	}
 
@@ -220,7 +222,7 @@ public class MenuController {
 			// Notify the user
 			outputArea.appendText(
 					"Bedingung erfüllt. Willkommen in der RED-Phase:\n" 
-					+ "Einen fehlschlagenden Test schreiben, oder nicht kompilierbaren Code schreiben :)\n");
+					+ "Einen fehlschlagenden Test schreiben, oder nicht kompilierbaren Code schreiben\n");
 			// Activate/Deactivate TextAreas
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
@@ -245,7 +247,7 @@ public class MenuController {
 			phase = Color.RED;
 			// Notify the user
 			outputArea.setText("Willkommen zurück in der RED-Phase:\n"
-					+ "Einen fehlschlagenden Test schreiben :)\n");
+					+ "Einen fehlschlagenden Test schreiben.\n");
 			// Activate/Deactivate TextAreas/Buttons
 			testArea.setEditable(true);
 			codeArea.setEditable(false);
@@ -260,7 +262,7 @@ public class MenuController {
 			}
 			// tddttimer.changeToTestingTimer();
 		} else {
-			outputArea.appendText("\nVon hier aus geht es nicht zu RED zurück :)");
+			outputArea.appendText("\nVon hier aus geht es nicht zu RED zurück.");
 		}
 	}
 }
