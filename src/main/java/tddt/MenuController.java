@@ -11,7 +11,8 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import java.util.Collections; 
+import vk.core.api.CompileError;
+import java.util.Collection;
 import java.util.HashMap;
 
 
@@ -267,5 +268,11 @@ public class MenuController {
 	private void saveExceptions() {
 		Collection<CompileError> testErrors = compiler.getTestErrors();
 		Collection<CompileError> codeErrors = compiler.getCodeErrors();
+		testErrors.addAll(codeErrors);
+		for(CompileError error : testErrors) {
+			if(error.getMessage().contains("OutOfBounds")) {
+				
+			}
+		}
 	}
 }
