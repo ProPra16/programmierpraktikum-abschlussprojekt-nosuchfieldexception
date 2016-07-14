@@ -13,7 +13,7 @@ import javafx.scene.chart.PieChart;
 public class OutputController implements Initializable {
 	
 	@FXML 
-	private PieChart piechart;
+	private PieChart chart;
 	
 	@FXML 
 	private Button buttonPieChart;
@@ -21,12 +21,15 @@ public class OutputController implements Initializable {
 	@FXML
 	private void loadPieChart(ActionEvent event) {
 		buttonPieChart.setVisible(false);
+		System.out.println(TDDTTimer.test+"");
+		System.out.println(TDDTTimer.code+"");
+		System.out.println(TDDTTimer.refactor+"");
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
         		new PieChart.Data("Time for Testwriting", TDDTTimer.test),
         		new PieChart.Data("Time for Coding", TDDTTimer.code),
         		new PieChart.Data("Time for Refactoring", TDDTTimer.refactor));
-		piechart.setTitle("Time used for Phases");
-		piechart.setData(pieChartData);
+		chart.setTitle("Time used for Phases");
+		chart.setData(pieChartData);
 	}
 
 	@Override

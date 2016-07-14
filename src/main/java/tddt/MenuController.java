@@ -55,7 +55,7 @@ public class MenuController {
 	private Button nextStepButton;
 
 
-	private TDDTTimer tddttimer = new TDDTTimer();
+	private TDDTTimer tddttimer;
 	
 	private HashMap<String, Integer> compileErrors = new HashMap<>();
 	
@@ -76,6 +76,7 @@ public class MenuController {
 		startButton.setDisable(false);
 		nextStepButton.setDisable(false);
 		testArea.setEditable(true);
+		tddttimer = new TDDTTimer();
 
 		latestTestString = testArea.getText();
 		latestCodeString = codeArea.getText();
