@@ -6,18 +6,13 @@ public class TimerTest {
 		CustomTimer t = new CustomTimer(new BabystepsUser() {
 			
 			@Override
-			public void notifyCodingTimerElapsed() {
-				System.out.println("HO");				
-			}
-			
-			@Override
-			public void notifiyTestingTimerElapsed() {
+			public void notifyTimerElapsed() {
 				System.out.println("hi");
 			}
 		}, 2000, 4000);
-		t.startTestingTimer();
-		t.stopTestingTimer();
-		t.startCodingTimer();
+		t.startTimer();
+		t.stopTimer();
+		t.startTimer();
 	}
 
 }

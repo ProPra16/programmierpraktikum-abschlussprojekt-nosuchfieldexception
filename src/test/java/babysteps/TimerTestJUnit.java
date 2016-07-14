@@ -1,7 +1,5 @@
 package babysteps;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 public class TimerTestJUnit {
@@ -12,17 +10,12 @@ public class TimerTestJUnit {
 		BabystepsUser u = new BabystepsUser() {
 			
 			@Override
-			public void notifyCodingTimerElapsed() {
-				System.out.println("Finished coding");
-			}
-			
-			@Override
-			public void notifiyTestingTimerElapsed() {
+			public void notifyTimerElapsed() {
 				System.out.println("Finished testing");
 			}
 		};
 		t.registerBabystepsUser(u);
-		t.startTestingTimer();
+		t.startTimer();
 	}
 
 }
