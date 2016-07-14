@@ -137,6 +137,7 @@ public class MenuController {
 				// RED-Phase
 			if (phase.equals(Color.RED)) {
 				switchToGreenPhase();
+				tddttimer.addTestTime();
 				if (babystepsEnabled && phase.equals(Color.GREEN)) {
 					timer.stopTimer();
 					timer.startTimer();
@@ -145,6 +146,7 @@ public class MenuController {
 				// GREEN-PHASE
 			} else if (phase.equals(Color.GREEN)) {
 				switchToRefactorPhase();
+				tddttimer.addCodeTime();
 				if (babystepsEnabled && phase.equals(Color.BLACK)) {
 					refreshTimer.stop();
 					timer.stopTimer();
@@ -152,6 +154,7 @@ public class MenuController {
 				// REFACTOR-Phase
 			} else if (phase.equals(Color.BLACK)) {
 				switchToRedPhase();
+				tddttimer.addRefactorTime();
 				if (babystepsEnabled && phase.equals(Color.RED)) {
 					timer.stopTimer();
 					timer.startTimer();
@@ -246,6 +249,7 @@ public class MenuController {
 	public void handleBackToRedButton() {
 		if (phase == Color.GREEN) {
 			phase = Color.RED;
+			tddttimer.addCodeTime();
 			// Notify the user
 			outputArea.setText("Willkommen zurück in der RED-Phase:\n"
 					+ "Einen fehlschlagenden Test schreiben.\n");
