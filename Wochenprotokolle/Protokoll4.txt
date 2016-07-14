@@ -1,0 +1,20 @@
+Filehandling:
+  + Fertig
+
+Tracking:
+  + Timerklasse nicht notwendig
+  - Graphen anzeigen
+  - Statistiken
+  - Auswertung
+
+Live-Compiling:
+  + fertig
+  
+Design:
+  + kleine Anpassung des Timers
+  + Spinner zum Zeit einstellen
+  
+Babysteps:
+  + Zusammenarbeit mit GUI
+  + Kontrolle durch verwendung eines Spinners
+  + Bugfixes
