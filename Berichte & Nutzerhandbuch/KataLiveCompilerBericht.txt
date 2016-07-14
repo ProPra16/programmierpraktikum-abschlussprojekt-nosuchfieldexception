@@ -15,4 +15,4 @@ Abfragen eingeführt, die dafür sorgen, dass keine Exception geworfen wird.
 
 Zur Refactor-Phase: Der Benutzer gelangt immer nach der GREEN-Phase in die Refacor-Phase in der er den Code verbessern kann. 
 Danach kann er nur weiter zur RED-Phase kommen, wenn der Code immer noch kompiliert und alle Tests immer noch erfolgreich sind. 
-Der Nutzer kann also auch einfach so den Next-Step Button drücken um somit die Refactor-Phase zu überspringen.
+Der Nutzer kann also auch einfach so den "Nächster Schritt"-Button drücken um somit die Refactor-Phase zu überspringen.
