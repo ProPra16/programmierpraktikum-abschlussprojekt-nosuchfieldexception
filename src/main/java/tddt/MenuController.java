@@ -11,6 +11,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import java.util.Collections; 
+import java.util.HashMap;
+
 
 public class MenuController {
 
@@ -127,6 +130,7 @@ public class MenuController {
 		// Check & Compile
 		compiler = KataLiveCompiler.constructCompiler(testArea.getText(), codeArea.getText(), outputArea);
 		if (compiler != null) {
+			saveExceptions();
 				// RED-Phase
 			if (phase.equals(Color.RED)) {
 				switchToGreenPhase();
@@ -258,5 +262,10 @@ public class MenuController {
 		} else {
 			outputArea.appendText("\nVon hier aus geht es nicht zu RED zurück :)");
 		}
+	}
+	
+	private void saveExceptions() {
+		Collection<CompileError> testErrors = compiler.getTestErrors();
+		Collection<CompileError> codeErrors = compiler.getCodeErrors();
 	}
 }
