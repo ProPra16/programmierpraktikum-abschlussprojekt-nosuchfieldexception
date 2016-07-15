@@ -8,13 +8,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tddt.OutputController">
    <children>
-      <Label layoutX="35.0" layoutY="14.0" text="Ergebnis: ">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
       <PieChart id="piechart" fx:id="chart" layoutX="150.0" layoutY="375.0" />
-      <TextArea fx:id="out" layoutX="35.0" layoutY="84.0" prefHeight="250.0" prefWidth="730.0" />
       <Button fx:id="buttonPieChart" layoutX="200.0" layoutY="475.0" mnemonicParsing="false" onAction="#loadPieChart" prefHeight="200.0" prefWidth="400.0" text="Press here to load the Pie Chart" />
+      <BarChart fx:id="barChart" layoutX="25.0" layoutY="14.0" prefHeight="350.0" prefWidth="722.0" title="Quantity of Errors">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button fx:id="buttonBarChart" layoutX="186.0" layoutY="89.0" mnemonicParsing="false" onAction="#loadBarChart" prefHeight="200.0" prefWidth="400.0" text="Press here to load the Bar Chart" />
    </children>
 </AnchorPane>

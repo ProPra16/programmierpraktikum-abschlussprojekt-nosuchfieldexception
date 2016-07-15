@@ -11,6 +11,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import vk.core.api.CompileError;
+
+import java.util.Collection;
 import java.util.HashMap;
 
 public class MenuController {
@@ -57,7 +60,7 @@ public class MenuController {
 
 	private TDDTTimer tddttimer;
 	
-	private HashMap<String, Integer> compileErrors = new HashMap<>();
+	public static HashMap<String, Integer> compileErrors = new HashMap<>();
 	
 	private boolean babystepsEnabled;
 	private String latestTestString;
@@ -133,6 +136,7 @@ public class MenuController {
 	public void handleNextStepButton() {
 		// Check & Compile
 		compiler = KataLiveCompiler.constructCompiler(testArea.getText(), codeArea.getText(), outputArea);
+		saveExceptions();
 		if (compiler != null) {
 				// RED-Phase
 			if (phase.equals(Color.RED)) {
@@ -270,4 +274,31 @@ public class MenuController {
 			outputArea.appendText("\nVon hier aus geht es nicht zu RED zurück.");
 		}
 	}
+	
+	private void saveExceptions() {
+		Collection<CompileError> testErrors = compiler.getTestErrors();
+		Collection<CompileError> codeErrors = compiler.getCodeErrors();
+		for(CompileError error : codeErrors) testErrors.add(error);
+		for(CompileError error : testErrors) {
+			if(error.getMessage().contains("OutOfBounds")) {
+				compileErrors.merge("OutOfBound Exceptions", 1, (x,y) -> {return x+y;} );
+			} else if(error.getMessage().contains("method")) {
+			} else if(error.getMessage().contains("NullPointer")) {
+				compileErrors.merge("NullPointer Exceptions", 1, (x,y) -> {return x+y;} );
+			} else if(error.getMessage().contains("expected")) {
+				compileErrors.merge("Java Structure Errors", 1, (x,y) -> {return x+y;} );
+			} else if(error.getMessage().contains("return")) {
+				compileErrors.merge("Missing returns", 1, (x,y) -> {return x+y;} );
+			} else if(error.getMessage().contains("converted")) {
+				compileErrors.merge("Type Errors", 1, (x,y) -> {return x+y;} );
+			} else if(error.getMessage().contains("zero")) {
+				compileErrors.merge("Division by Zero Errors", 1, (x,y) -> {return x+y;} );
+			} else if(error.getMessage().contains("private")) {
+				compileErrors.merge("private Access Errors", 1, (x,y) -> {return x+y;} );
+			} else {
+				compileErrors.merge("Other Errors", 1, (x,y) -> {return x+y;} );
+			}
+		}
+	}
+	
 }
