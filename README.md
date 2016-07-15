@@ -1,5 +1,5 @@
 Bauen : gradlew build
-Ausf�hren: gradlew run
+Ausführen: gradlew run
 
 Team NoSuchFieldException
 - Fabio Schlösser Vila (= f4nz0)
