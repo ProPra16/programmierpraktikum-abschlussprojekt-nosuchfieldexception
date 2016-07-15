@@ -1,3 +1,6 @@
+Bauen : gradlew build
+Ausführen: gradlew run
+
 Team NoSuchFieldException
 - Fabio SchlÃ¶sser Vila (= f4nz0)
 - Jan Orlob (= CaptainFlaM0ng0)
