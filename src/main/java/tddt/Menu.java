@@ -11,15 +11,15 @@ public class Menu extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//FXML laden
+		//Load FXML
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
 		
-		//Szenengröße bestimmen
+		//Set scene
 		Scene scene = new Scene(root,800 ,800);
-		//CSS laden
+		//Load CSS
 		scene.getStylesheets().add(getClass().getClassLoader().getResource("menu.css").toExternalForm());
 
-		//Fenster anzeigen
+		//Show window
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("TDDT");
 	    primaryStage.centerOnScreen();

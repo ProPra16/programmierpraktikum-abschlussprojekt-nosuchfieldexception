@@ -49,14 +49,14 @@ public class KataLiveCompiler {
 		outputArea.setText("");
 		// Check if it can be a valid class
 		if (!inputTest.contains("public class")) {
-			outputArea.setText("Die Test-Klasse enthält noch kein 'public class'.");
+			outputArea.setText("Die Test-Klasse enthaelt noch kein 'public class'.");
 		} else if (!inputCode.contains("public class")) {
-			outputArea.setText("Die Code-Klasse enthält noch kein 'public class'.");
+			outputArea.setText("Die Code-Klasse enthaelt noch kein 'public class'.");
 			// Class name missing
 		} else if (inputTest.indexOf("{") < 14) {
-			outputArea.setText("Bitte einen Klassennamen für die Test-Klasse angeben.");
+			outputArea.setText("Bitte einen Klassennamen fuer die Test-Klasse angeben.");
 		} else if (inputCode.indexOf("{") < 14) {
-			outputArea.setText("Bitte einen Klassennamen für die Code-Klasse angeben.");
+			outputArea.setText("Bitte einen Klassennamen fuer die Code-Klasse angeben.");
 			// Tests missing
 		} else if (!inputTest.contains("@Test")) {
 			outputArea.setText("Keine Tests vorhanden.");
