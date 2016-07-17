@@ -8,7 +8,7 @@ public class Code{
 ~~NoSuchFieldException-ProPra16~~import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class Test{
+public class TestClass{
 
 @Test 
 public void test(){
