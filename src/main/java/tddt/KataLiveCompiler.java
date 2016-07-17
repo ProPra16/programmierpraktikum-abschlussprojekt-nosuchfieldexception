@@ -62,7 +62,7 @@ public class KataLiveCompiler {
 			outputArea.setText("Keine Tests vorhanden.");
 			//Duplicate class names
 		}else if(getClassName(inputTest).equals(getClassName(inputCode))){
-			outputArea.setText("Die Klassen müssen unterschiedliche Namen haben!");
+			outputArea.setText("Die Klassen muessen unterschiedliche Namen haben!");
 		} else {
 			KataLiveCompiler newCompiler = new KataLiveCompiler(inputCode, inputTest);
 			outputArea.setText(newCompiler.getErrors() + newCompiler.getFailedTestMessages());
