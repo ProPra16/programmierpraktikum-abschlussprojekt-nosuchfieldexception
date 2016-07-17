@@ -5,7 +5,7 @@ import org.junit.Test;
 public class TimerTestJUnit {
 
 	@Test
-	public void testTimerFunctionality() { //Bricht zu früh ab?
+	public void testTimerFunctionality() {
 		CustomTimer t = new CustomTimer(1000,2000);
 		BabystepsUser u = new BabystepsUser() {
 			
